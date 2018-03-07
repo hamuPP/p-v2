@@ -14,9 +14,18 @@ module.exports = {
     },
     output: {
         path: path.join(__dirname, '../dist'),
-        // publicPath:'/',                        // 资源路径
+        publicPath:'',                        // 资源路径
         filename: '[name].[hash].js',                       // 入口js命名
         chunkFilename: '[name].[hash].chunk.js'            // 路由js命名
+    },
+    devServer: {
+        proxy: {
+            "/": { // 会把 / 开头的请求转发到 下面 targe 对应的地址
+                target: "http://10.176.156.67:10200", // 这里是实际请求的地址
+                // pathRewrite: {"^/api": ""}, // 请求的前缀
+                secure: false
+            }
+        }
     },
     module: {
         // noParse: /es6-promise\.js$/,
@@ -30,6 +39,13 @@ module.exports = {
                     { loader: "style-loader" },
                     { loader: "css-loader" },
                     { loader: "less-loader" }
+                ]
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    { loader: "style-loader" },
+                    { loader: "css-loader" }
                 ]
             },
             {
