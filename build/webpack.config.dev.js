@@ -13,7 +13,7 @@ module.exports = {
         vendors: ['vue', 'vue-router']
     },
     output: {
-        path: path.join(__dirname, './dist'),
+        path: path.join(__dirname, '../dist'),
         // publicPath:'/',                        // 资源路径
         filename: '[name].[hash].js',                       // 入口js命名
         chunkFilename: '[name].[hash].chunk.js'            // 路由js命名
