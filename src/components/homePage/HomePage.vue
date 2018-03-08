@@ -8,6 +8,7 @@
             <div class="logo"></div>
             <a class="fixed-logo" @click="logoHref"></a>
         </div>
+
         <div class="fixed-right">
             <!--右边的模块-->
             <RightModel></RightModel>
