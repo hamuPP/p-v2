@@ -52,7 +52,7 @@
             /*打开公告*/
             showNoticeManage(){
                 /**田蓉 修改  为了兼容ie*/
-                this.$router.push({path:"/noticeManage"});
+                this.$router.push({path:"/index/noticeManage"});
                 //window.location.hash = '/noticeManage'
             },
           closeFull(){

@@ -280,7 +280,7 @@
                 sessionStorage.setItem('noticeDetailsId',dataId);
                 sessionStorage.setItem('currentReleaseScope',1);
                 /**田蓉 修改  为了兼容ie*/
-                this.$router.push({path:'/noticeDetails'});
+                this.$router.push({path:'/index/noticeDetails'});
                 //window.location.hash = '/noticeDetails';
             }
         },

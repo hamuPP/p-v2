@@ -200,7 +200,7 @@
 
             showAddressbookFullpage(){
                 /**田蓉 修改  为了兼容ie*/
-                this.$router.push({path:'/addressbookfullpage'})
+                this.$router.push({path:'/index/addressbookfullpage'})
                // window.location.hash = '/addressbookfullpage';
             },
             /**

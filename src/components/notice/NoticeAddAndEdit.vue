@@ -171,7 +171,7 @@
     import Tabs from '../Tabs.vue'
     import Tree from '../plugins/Tree.vue'
     import UE from '../Editor.vue'
-    import Utils from '../../../vuex/Utils.js'
+    import Utils from '../../vuex/Utils.js'
 
     import {mapGetters} from "vuex"
 
