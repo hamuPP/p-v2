@@ -33,7 +33,7 @@ const actions = {
             let nowTableData = {};
             if (data.meta.code === 1) {
                 sessionStorage.setItem('loginAccount', reqData.username);
-                window.location.href = "#/index/1";
+                window.location.href = "#/index";
             } else {
                 nowTableData.code = state.loginData.code ? state.loginData.code : 0 + data.meta.code;
                 if (data.meta) {

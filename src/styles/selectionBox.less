@@ -1,0 +1,84 @@
+/*********************************************************************
+ * SelectionBox的样式，对应vue文件SelectionBox.vue
+ * Created by tangyue on 2017/12/26.                                       *
+ *********************************************************************/
+
+.selection-showbox{
+    display: block;
+    position: relative;
+    background-color: #fff;
+    padding-left: 3px;
+    padding-right: 38px;
+    width: 100%;
+    min-height: 28px;
+    border: solid 1px #dcdcdc;
+
+    &.middle{}
+    &.small{
+        min-height: 20px;
+    }
+
+    .selection-showinput{
+        display: block;
+        width: 100%;
+        font-size: 12px;
+        text-indent: 8px;
+        padding: 0;
+        margin: 0;
+        outline: none;
+        border: none;
+        height: 30px;
+        line-height: 30px;
+
+        &.middle{
+            height: 24px;
+            line-height: 24px;
+        }
+        &.small{
+            height: 22px;
+            line-height: 22px;
+        }
+    }
+
+    .selection-showicon{
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 36px;
+        display: block;
+        height: 32px;
+        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABF0lEQVRYR+2VbW0CQRBAHw4qAQelDoqCFgegoMFBJeCgOKBV0KIAJOAAHEBecpuQ5j527ppcf+z8uT/MzJu3s8uEkWMycn8KQDFQDPxrA+/AJ3D8g7diC1jv9LtWm4Ef4BF4qksMQNn8FZhFAR4AIa7AHLgEmqafboC3aohak107IISJ5x4QS+ADWAFaqI0uAJNUp4lvYJFpQeU7YA1ooTFyAO4hLOpEbSGwsF+AFlojF8Aiz1VhdTZBTIEDsK8Wr6t/+N+w7VzdFyd3KGGzljZiIE3TBOGyCuERZDW3YB8A89L1cil9rNJdd/LQw9UXQAibvlQNbeyDFWo+xEA6Dp9Xm/v1qoZjiIFws7qEAlAMFAPFQDFwA+dXLyHNPUQzAAAAAElFTkSuQmCC) center no-repeat;
+        background-size:18px;
+        cursor: pointer;
+        user-select: none;
+
+        &.middle{
+
+        }
+        &.small{
+            height: 24px;
+            width: 30px;
+        }
+    }
+}
+.selection-titlecell{
+    display: block;
+    height: 28px;
+    min-width: 200px;
+    padding-right: 5px;
+    text-align: left;
+    text-indent: 15px;
+    line-height: 28px;
+    cursor: pointer;
+    user-select: none;
+    color: #333;
+    font-weight: 500;
+    font-size: 14px;
+    overflow: hidden;
+    &.middle{
+
+    }
+    &.small{
+        min-width: 80px;
+    }
+}

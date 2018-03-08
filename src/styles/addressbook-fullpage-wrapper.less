@@ -1,0 +1,156 @@
+.addressbook-fullpage-wrapper{
+    //background: pink;
+
+    & >.inner-inner-main{
+        &>div{
+            padding:0 38px 0 49px;
+            display: flex;
+            height: 100%;
+            flex-direction: column;
+        }
+    }
+    .header{
+        width: 100%;
+        height: 83px;
+
+        border-bottom:1px solid #dcdcdc;
+        .title{
+            padding: 0;
+            margin: 0;
+            font-size:24px;
+            line-height: 82px;
+            color: #c8c8c8;
+            float: left;
+        }
+        .toolbar-right{
+            float: right;
+            height: 24px;
+            width: 24px;
+            background: #dcdcdc;
+            margin:29px 0 0;
+            text-align: center;
+            font-size: 16px;
+        }
+    }
+
+    .main-content{
+        height: -moz-calc(~"100% - 83px");
+        height: -webkit-calc(~"100% - 83px");
+        height: calc(~"100% - 83px");
+        flex:1;
+
+        padding:10px 0 37px;
+        overflow: hidden;
+        &>div{
+            //display: flex;
+            display: block;
+            width: 100%;
+            height: 100%;
+            &>.left{
+                width: 290px;
+                display: block;
+                float: left;
+                height: 100%;
+                //background: rebeccapurple;
+                .tree-wrapper{
+                    height: -moz-calc(~"100% - 24px");
+                    height: -webkit-calc(~"100% - 24px");
+                    height: calc(~"100% - 24px");
+                    border: 1px solid #dcdcdc;
+                    border-top: none;
+                    //overflow: hidden;
+                    padding:10px;
+                    overflow: auto;
+
+                }
+            }
+            &>.right{
+                //flex:1;
+                float: right;
+                width: -moz-calc(~"100% - 290px");
+                width: -webkit-calc(~"100% - 290px");
+                width: calc(~"100% - 290px");
+                height: 100%;
+                overflow: hidden;
+                .table-wrapper{
+                    width: 100%;
+                    height: 100%;
+                    padding:0 0 0 10px;
+                    .toolbar{
+                        width: 100%;
+                        height: 24px;
+
+                        .search-box{
+                            float: left;
+                            width: 140px;
+                            border:1px solid #dcdcdc;
+                            overflow: hidden;
+
+                            .search-input-box{
+                                display: block;
+                                float: left;
+                                width: 114px;
+                                height: 22px;
+                            }
+
+                            .search-input{
+                                outline: none;
+                                color:#333;
+                                text-indent: 10px;
+                                height: 24px;
+                                line-height: 22px;
+                                border:none;
+                                padding: 0;
+                                margin: 0;
+                            }
+                        }
+
+                        .search-button,
+                        .download-button{
+                            display: block;
+                            float: right;
+                            width: 23px;
+                            height: 22px;
+                            border-left:1px solid #dcdcdc;
+                            background: #F0F0F0;
+                            text-align: center;
+                            padding-top: 2px;
+                            cursor:pointer;
+                        }
+                        .download-button{
+                            border:none;
+                        }
+
+                        .iconfont{
+                            font-size:14px;
+                            font-weight:600;
+                            color:#666;
+                        }
+
+                        .right-icon{
+                            display: block;
+                            float: right;
+                            overflow: hidden;
+                            border:1px solid #dcdcdc;
+                        }
+                    }
+                    .content-wrapper{
+                        width: 100%;
+
+                        height: -moz-calc(~"100% - 65px");
+                        height: -webkit-calc(~"100% - 65px");
+                        height: calc(~"100% - 65px");
+                        padding:10px 0 0;
+                    }
+
+                    .pagination-wrapper{
+                        width: 100%;
+                        height: 41px;
+                        border:1px solid #dcdcdc;
+                        border-top:none;
+                    }
+                }
+            }
+        }
+    }
+}

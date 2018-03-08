@@ -1,0 +1,242 @@
+.mock-login-full-modal{
+    background: rgba(0,0,0,.2);
+    position: absolute;
+    z-index:99;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+
+    & > .main-content{
+        position: relative;
+        width: 80%;
+        height: 80%;
+        margin:45px auto 0;
+        background: #fff;
+        -webkit-border-radius:4px;
+        -moz-border-radius:4px;
+        border-radius:4px;
+        -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.15);
+        -moz-box-shadow: 0 1px 1px rgba(0,0,0,.15);
+        box-shadow: 0 1px 1px rgba(0,0,0,.15);
+
+        .mocklogin-loading-layer{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            z-index:9;
+            top:0;
+            left:0;
+            background: rgba(255, 255, 255, 0.7);
+            .img{
+                display: block;
+                margin: 20% auto 0;
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        .header{
+            width: 100%;
+            height: 45px;
+            .title{
+                font-size:14px;
+                line-height:30px;
+                color:#999;
+                float: left;
+                width: 150px;
+                margin:6px 0 0 15px;
+                border-bottom:1px solid #999;
+            }
+            .close-icon{
+                float: right;
+                font-size: 14px;
+                color: #999;
+                padding: 6px 8px;
+                cursor: pointer;
+            }
+        }
+        .body{
+            height: -moz-calc(~"100% - 105px");
+            height: -webkit-calc(~"100% - 105px");
+            height: calc(~"100% - 105px");
+            overflow-x:hidden;
+            overflow-y:auto;
+            padding:10px;
+        }
+        .content-footer{
+            width: 100%;
+            height: 60px;
+            padding:10px 20%;
+            text-align: center;
+            .btn{
+                height: 40px;
+                width: 100px;
+                -webkit-border-radius:0;
+                -moz-border-radius:0;
+                border-radius:0;
+            }
+            .btn-success{
+                background: #4cac55;
+                color:#fff;
+                float: left;
+            }
+            .btn-default{
+                background: #f0f0f0;
+                color:rgb(123, 143, 175);
+                float: right;
+            }
+        }
+        @media screen and (min-width:1200px){
+            .content-footer{
+                padding:10px 30%;
+            }
+        }
+
+        .body-item{
+            width: 20%;
+            float: left;
+            min-height:50px;
+            text-align: center;
+            margin:0 0 10px;
+            padding:10px;
+            //outline:1px solid blue;
+            .inner-content{
+                box-sizing:border-box;
+                //cursor: pointer;
+                padding: 10px 0 20px;
+                background:rgb(245,245,246);
+                &.edit-mode{
+                    padding:10px 0 0;
+                }
+                &:hover{
+                    background: #fff;
+                    -webkit-box-shadow: 0 0 2px rgb(101, 125, 182);
+                    -moz-box-shadow: 0 0 2px rgb(101, 125, 182);
+                    box-shadow: 0 0 2px  rgb(101, 125, 182);
+                }
+
+                .avatar{
+                    height: 35px;
+                    display: block;
+                    margin-bottom:10px;
+                    //transition:all 300ms;
+
+                    //transition
+                }
+                .edit-account{
+                    font-size: 12px;
+                    cursor: pointer;
+                }
+                .checkbox{
+                    display: block;
+                    float: right;
+                    margin-top: -15px;
+                    margin-right: -5px;
+                }
+                .edit-input-box{
+                    width: 100%;
+                    height: 62px;
+
+                    .input-group{
+                        width: 100%;
+                        font-size:12px;
+                        display: flex;
+                        margin:3px 0 0;
+                        .input-title{
+                            display: block;
+                            margin: 0;
+                            width: 50px;
+                        }
+                        .input-box{
+                            flex:1;
+                            padding-right:5%;
+                            &>input{
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+                .icon-queren{
+                    color: #4cac55;
+                    margin-right: 7px;
+                }
+            }
+            &:nth-child(even){
+
+            }
+            .item-text{
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                margin: 0;
+                font-size:12px;
+                color:#666;
+            }
+        }
+
+        @media screen and (min-width:1200px){
+            .body-item{
+                width: 16.66%;
+            }
+        }
+        @media screen and (min-width:1700px){
+            .body-item{
+                width: 14.285%;
+            }
+        }
+    }
+}
+
+.mock-login-full-modal.single-edit{
+    .main-content{
+        width: 500px;
+        height: 300px;
+        .body-title{
+            width: 100%;
+            text-align: center;
+            font-size:18px;
+            font-weight:400;
+            color:#888;
+            padding: 0;
+            margin: 0;
+            .inner-text{
+                margin: 0;
+                color:#333;
+                font-weight:600;
+                padding:0 10px;
+            }
+        }
+        .edit-input-box{
+            width: 300px;
+            margin: 20px auto 0;
+            .input-group{
+                display: flex;
+                margin:0 0 15px;
+                .input-title{
+                    width: 70px;
+                    color:#6c6c6c;
+                    font-size:14px;
+                    font-weight:400;
+                    text-align: right;
+                    margin:0;
+                    line-height:36px;
+
+                }
+                .input-box{
+                    flex:1;
+                    height: 36px;
+                    input{
+                        line-height: 18px;
+                        color:#595959;
+                        padding:8px 9px;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+        .content-footer{
+            padding:10px 100px 0 170px;
+        }
+    }
+}

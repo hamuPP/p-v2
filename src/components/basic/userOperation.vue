@@ -1,0 +1,309 @@
+/*********************************************************************
+* 用户的基本信息的操作事件                                             *
+* Created by tr on 2017/10/31.                                       *
+*********************************************************************/
+<template>
+    <div class="userOperation" v-if="userVisible">
+        <div class="userOperation_p">
+            <i class="iconfont col icon-gonggao" v-if="noticeList.length"></i>
+             <div class="swiper-container"  v-if="noticeList.length">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" :data-id="str.id" v-for="str in noticeList" @click="noctionEvtA(str.id)">{{str.annoTitle}}</div>
+                </div>
+            </div>
+            <div class="right">
+                <!-- <div>
+                    <i class="iconfont col icon-xiaoxi1" @click="proTpl('news')">
+                        <span class="tip">
+                            <sub class="num">{{newsNoticeData.total}}</sub>
+                        </span>
+                    </i>
+                    <label>消息</label>
+                </div> -->
+                <div @click="proTpl('agency')">
+                    <i class="iconfont col icon-daiban"></i>
+                    <label>通讯录</label>
+                </div>
+                <div @click="proTpl('quit')">
+                    <i class="iconfont col icon-tuichu"></i>
+                    <label>退出</label>
+                </div>
+                <div @click="proTpl('users')">
+                    <i class="iconfont col icon-renwujiaose"></i>
+                    <label>我</label>
+                </div>
+            </div>
+        </div>
+        <!--用户基本操作-->
+        <div class="userNews" v-if="userPortal.users">
+            <ul>
+                <li @click="resetPwd">修改密码</li>
+                <li>编辑资料</li>
+            </ul>
+        </div>
+        <!--消息弹出框-->
+       <!--  <div class="promptTip" v-if="userPortal.news">
+            <em></em>
+            <p>消息通知 <a @click="newsDetailPage(all,$event)">查看全部</a></p>
+            <div v-if="newsNoticeData.data.length">
+                <ul class="newList">
+                    <li v-for="(nd , i) in newsNoticeData.data" :class="[{'unread': nd.selectState}]" @mouseover="overEvt(nd)" @mouseout="outEvt(nd)">
+                        <label @click="newsDetailPage(i,$event)">{{nd.title || nd.content}}</label>
+                        <span class="right-text" :style="[{'display': (nd.selectState ? 'none':'inline-block'),'color': nd.statusStr === '紧急' ? 'red' :  nd.statusStr === '重要' ? '#ff7e15':'#999'}]">{{nd.statusStr}}</span>
+                        <button class="right-text" :style="[{'display': (!nd.selectState ? 'none':'block')}]" @click="deleteIdEvt(nd.messageId)">忽略</button>
+                   </li>
+                </ul>
+                <p class="p-button"><button @click="deleteAllEvt">全部忽略</button></p>
+            </div>
+            <div class="notContent" v-else>
+                <img src="../../../../static/images/notContent.png">
+                <p>您暂时没有消息</p>
+            </div>
+        </div> -->
+        <newsNotice></newsNotice>
+        <!--确认信息框-->
+        <ConfirmTpl :confirm="confirmVisible" @confirmEle="confirmEvt" @cancelEle="cancelEvt"></ConfirmTpl>
+    </div>
+
+</template>
+
+<style lang="less">
+    @import './swiper.css';
+
+    .swiper-container {
+        width: 60%;
+        position: absolute;
+        margin-left: 25px;
+        .swiper-slide{
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            line-height: normal;
+            cursor: pointer;
+        }
+    }
+</style>
+<script>
+    import Swiper from 'swiper'
+    import {mapGetters} from "vuex"
+    import newsNotice from '../newsNotice.vue'
+    import ConfirmTpl from '../common/ConfirmTpl.vue'
+  
+
+    export default{
+        data() {
+            return {
+                confirmVisible: false, //是否展示弹出框
+                userPortal: {
+                    news: false,
+                    users: false
+                },
+                noticeList:[],//通知公告展示的数据
+                notContent:false,
+                newDeleteId:0 //删除的消息通知Id
+            }
+        },
+        computed: mapGetters({
+            newsNoticeData:'noNoticeData',
+            deleteAll: 'deleteAll', //全部忽略
+            deleteId:'deleteId',
+            userVisible: 'userVisible',
+            noticeFind:"noticeFindData"
+        }),
+        watch: {
+            /**
+             * 监听通知公告的数据
+             */
+            "noticeFind":function(val){
+                let that = this;
+                if(val.data.length){
+                    that.noticeList = val.data;
+                }
+                that.$nextTick(()=>{
+                    that.noticeCarousel();
+                });
+            },
+            /*监听删除Id时，返回的值*/
+            deleteId(val){
+                let that = this;
+               if(val.code === 1) {
+                  that.getNotice();
+                   this.$store.dispatch('promptShow', {reqDate: '忽略成功'});
+               }else {
+                   this.$store.dispatch('promptShow', {reqDate: '忽略失败'});
+               }
+            },
+            /*监听忽略全部的信息*/
+            deleteAll(val){
+                let that = this;
+                if(val.code === 1) {
+                    that.getNotice();
+                    this.$store.dispatch('promptShow', {reqDate: '忽略成功'});
+                }else {
+                    this.$store.dispatch('promptShow', {reqDate:'忽略失败'});
+                }
+            }
+        },
+        components: {
+            newsNotice,ConfirmTpl
+        },
+        methods: {
+            /**
+             * 操作栏的点击事件
+             * @param ele 点击当前的按钮
+             */
+            proTpl(ele) {
+                let that = this;
+                that.userPortal = {
+                    news: false,
+                    users: false
+                };
+                switch (ele) {
+                    case 'news':
+                        that.userPortal.news = true;
+                        break;
+                    case 'users':
+                        that.userPortal.users = true;
+                        break;
+                    case 'quit':
+                        /*登出清除其他进程 by other*/
+                        if (typeof nodeRequire !== 'undefined') {
+                            nodeRequire('electron').ipcRenderer.send('logout');
+                        }
+                        /*退出登录*/
+                        that.$store.dispatch('loginOut');
+                        /*隐藏编辑组件*/
+                        that.$store.dispatch('hideEditMaskFun');
+                        /*隐藏增加组件按钮*/
+                        that.$store.dispatch('hideAddComponentFun');
+                        //关闭代办的全屏
+                        that.$store.dispatch('resetScreen');
+                        //打开首页
+                        that.$store.dispatch('rightModelShow');
+                        break;
+                    case 'agency':
+                        break;
+                }
+            },
+            /**
+             * 修改密码
+             */
+            resetPwd(){
+                this.userPortal.users = false;
+                this.$store.dispatch('showResetPwd');
+            },
+            /**
+             *点击去消息通知页面
+             * @param i
+             */
+            newsDetailPage(i,e){
+                e.preventDefault();
+                this.userPortal.news = false;
+                this.$store.dispatch('rightModelHide');
+                this.$store.dispatch('showNews');
+                this.$store.dispatch('resetScreen');
+                this.$store.dispatch('notAllowAssembly');
+            },
+            /**
+             * 鼠标悬浮时的事件
+             * @param evt
+             */
+            overEvt(el){
+                el.selectState = true;
+            },
+            /**
+             * 鼠标离开时的事件
+             * @param el
+             */
+            outEvt(el){
+                el.selectState = false;
+            },
+            /*打开提示框*/
+            deleteAllEvt(){
+                this.confirmVisible = true;
+            },
+            /*关闭提示框*/
+            cancelEvt(){
+                this.confirmVisible = false;
+            },
+            /**
+             * 忽略全部
+             */
+            confirmEvt(){
+                this.cancelEvt();
+                let that = this;
+                /*所有要删除的ID*/
+                let reqData = '';
+                let allData = that.newsNoticeData.data;
+                /*获取所有要删除的ID*/
+                if(allData){
+                    allData.map((item,i)=>{
+                        if((i+1) === allData.length){
+                            reqData += item.messageId;
+                        }else {
+                            reqData += (item.messageId + ',');
+                        }
+                    });
+                }
+                this.$store.dispatch('deleteIdNoticeData',{reqData:{messageId:reqData}});
+            },
+            /**
+             * 根据ID忽略信息
+             * @param id
+             */
+            deleteIdEvt(id){
+                this.newDeleteId = id;
+                this.$store.dispatch('deleteIdNoticeData',{reqData:{messageId:id}});
+            },
+            /**获取消息通知*/
+            getNotice(){
+                let reqData = {
+                    page: 1,
+                    rows: 15,
+                    state: 0
+                };
+                this.$store.dispatch('getNewsNoticeData', {reqData});
+            },
+            /**
+             * 通知公告轮播
+             */
+            noticeCarousel(){
+                let that = this;
+                
+                let mySwiper = new Swiper('.swiper-container',{
+                    autoplay : 3000,//可选选项，自动滑动
+                    loop : true,//可选选项，开启循环
+                    preventClicks : false,
+                });
+            },
+            noctionEvtA(dataId){
+                sessionStorage.setItem('noticeDetailsId',dataId);
+                sessionStorage.setItem('currentReleaseScope',1);
+                /**田蓉 修改  为了兼容ie*/
+                this.$router.push({path:'/noticeDetails'});
+                //window.location.hash = '/noticeDetails';
+            }
+        },
+        created() {
+            let that = this;
+            document.addEventListener('click', (e) => {
+                if (!that.$el.contains(e.target)) {
+                    that.userPortal = {
+                        news: false,
+                        users: false
+                    };
+                }
+            });
+            let reqData = {
+                flag: 1,
+                data: {
+                    page: 1,
+                    rows: 20
+                }
+                };
+            that.$store.dispatch('findNoticeData', {reqData})
+        }
+
+    }
+
+</script>

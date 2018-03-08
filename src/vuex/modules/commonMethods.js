@@ -347,7 +347,8 @@ class commonMethods {
         modalEle && body.removeChild(modalEle);
     }
     clearConsole() {
-        console.clear();
+        //todo 暂时注释掉
+        // console.clear();
     }
 }
 export default commonMethods;

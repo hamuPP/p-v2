@@ -1,0 +1,116 @@
+/*********************************************************************
+ * Created by tr on 2017/12/26.                                       *
+ *********************************************************************/
+@import 'common';
+
+.datePicker{
+  width: 100%;
+  span{
+    display: inline-block;
+  }
+  .opt{
+    display: flex;
+    .mb(12px);
+    color: @black-link;
+    span{
+      height: 12px;
+      line-height: 12px;
+      text-align: center;
+      .flex(5);
+      cursor: pointer;
+      &.left,
+      &.right{
+       .flex();
+        &:before{
+          position: absolute;
+          content: " ";
+          width: 0;
+          height: 0;
+          .mt(4px);
+          border-top:4px solid transparent;
+          border-bottom:4px solid transparent;
+          border-right:8px solid @black-link;
+        }
+      }
+
+      &.right{
+        &:before{
+          border-right: 0;
+          border-left:8px solid @black-link;
+        }
+      }
+    }
+  }
+   .title{
+    .mb(10px);
+  }
+   .body{
+    border: 1px solid @white-deep;
+    border-top:0;
+    border-bottom: 0;
+    &:last-child{
+      border-bottom:1px solid @white-deep;
+    }
+  }
+  .title,
+  .body{
+    display: flex;
+    span{
+      display: inline-block;
+      width: -moz-calc(~"100/7*1%");
+      width: -webkit-calc(~"100/7*1%");
+      width: calc(~"100/7*1%");
+      font-size: 12px;
+      text-align: center;
+      color: @black-link;
+
+      &.content{
+        height: 38px;
+        line-height: 38px;
+        color: @black-deepC;
+        border: 1px solid @white-deep;
+        border-right-color:transparent;
+        border-bottom-color:transparent;
+
+        &.other{
+          color: @black-link;
+          cursor: pointer;
+          &:hover{
+            .hover();
+          }
+          > .select{
+            display: inline-block;
+            height: 50%;
+            width: 50%;
+            background: @active-blue;
+            color: @white;
+            .border-radius(50%);
+            line-height: initial;
+          }
+        }
+      }
+      &.active{
+        .active();
+        cursor:pointer;
+      }
+    }
+    &.month{
+      > span{
+        height: 80px;
+        line-height: 80px;
+        border: 0;
+        border: 1px solid @white-deep;
+        border-right-color:transparent;
+        border-bottom-color:transparent;
+        color: @black-link;
+        cursor: pointer;
+        &:hover{
+          .hover();
+        }
+        &.active{
+          .active();
+        }
+      }
+    }
+  }
+}

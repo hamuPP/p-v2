@@ -1,0 +1,170 @@
+/*********************************************************************
+ * Created by tr on 2017/12/26.                                       *
+ *********************************************************************/
+
+@black: #333;
+@black-link: #888;
+@black-deep: #666;
+@black-deepC: #C8C8C8;
+@white: #FFF;
+@white-deep: #F0F0F0;
+@active-blue: #407dd1;
+@blue: #1296db;
+@blue-link: #27508D;
+@black-light: #999;
+@border-table: #DCDCDC;
+@whiteGray: #f5f5f5;
+@border: #dcdcdc;
+@activeButton: #407DD1; //表单高亮按钮背景色
+@red-deep:#DC3838;
+@red-c:#CF4747;
+
+/*选择中的样式*/
+.active(@size:@active-blue) {
+  background: @size;
+  color: @white;
+}
+
+/*悬停时样式*/
+.hover(@size:@active-blue) {
+  border: 1px solid @size;
+}
+
+/* padding 属性 */
+.padding(@top: 0, @right: 0, @bottom: 0, @left: 0) {
+  padding: @top @right @bottom @left;
+}
+
+.paddingMixin(...) {
+  padding: @arguments;
+}
+
+.pt(@size: 0) {
+  padding-top: @size;
+}
+
+.pr(@size: 0) {
+  padding-right: @size;
+}
+
+.pb(@size: 0) {
+  padding-bottom: @size;
+}
+
+.pl(@size: 0) {
+  padding-left: @size;
+}
+
+/*margin 属性 */
+.margin(@top: 0, @right: 0, @bottom: 0, @left: 0) {
+  margin: @top @right @bottom @left;
+}
+
+.mt(@size: 0) {
+  margin-top: @size;
+}
+
+.mr(@size: 0) {
+  margin-right: @size;
+}
+
+.mb(@size: 0) {
+  margin-bottom: @size;
+}
+
+.ml(@size: 0) {
+  margin-left: @size;
+}
+
+/*flex 属性*/
+.flex(@size:1) {
+  flex: @size !important;
+  -ms-flex: @size !important;
+  -webkit-flex: @size !important;
+}
+
+/*calc 属性 宽度*/
+.calc(@size) {
+  width: -moz-calc(@size);
+  width: -webkit-calc(@size);
+  width: calc(@size);
+}
+
+/* 文字截断 */
+.text-overflow-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+/*多行文字截取*/
+.text-overflow-ellipsis-line(@size:2){
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: @size;
+  -webkit-box-orient: vertical;
+}
+/* transform */
+.transform(@type) {
+  -webkit-transform: @type;
+  -moz-transform: @type;
+  -ms-transform: @type;
+  -o-transform: @type;
+  transform: @type;
+}
+
+.font-size10() {
+  font-size: 12px;
+  .transform(scale(5/6));
+  *font-size: 10px;
+}
+
+/* 圆角函数 */
+.border-radius(@size: 5px;) {
+  -webkit-border-radius: @size;
+  border-radius: @size;
+}
+/* 滚动条函数 */
+::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar{
+    width: 6px;
+    height: 6px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: #999;
+}
+/* 多列函数 */
+.column-count(@size:1){
+  -moz-column-count:@size; 	/* Firefox */
+  -webkit-column-count:@size; /* Safari 和 Chrome */
+  column-count:@size;
+}
+/* 触摸样式 */
+.touch() {
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+/* border 属性 */
+.border(@width: 1px, @type: solid, @color: @border) {
+  border: @width @type @color;
+}
+/*boxshadow样式函数*/
+.shadow(@size1: 0;@size2: 0;@size3: 20px;@color: rgba(51, 51, 51, .4)) {
+  -webkit-box-shadow: @size1 @size2 @size3 @color;
+  -moz-box-shadow: @size1 @size2 @size3 @color;
+  box-shadow: @size1 @size2 @size3 @color;
+}
+
+/* new added -by:ty 2018年03月08日15:01:31 */
+.body-wraper{
+    background: rgb(220, 230, 240);
+}

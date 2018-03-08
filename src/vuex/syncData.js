@@ -8,7 +8,7 @@ import Ajax from './Ajax'
 import * as con from './constant'
 import commonMethods from './modules/commonMethods'
 
-import MD5 from './md5'
+import Md5 from './md5'
 
 
 export default {
@@ -291,8 +291,9 @@ export default {
         let me = this;
         let _um = new um();
 
+        let _md5 = new Md5();
         let password = req.password;
-        var passwordMd5 = hex_md5(password); //加密
+        var passwordMd5 = _md5.hex_md5(password); //加密
         var passwordMd5Upper = passwordMd5.toUpperCase(); //转换全大写
 
         me.syncData({
@@ -310,12 +311,10 @@ export default {
                     sessionStorage.setItem('access_token', JSON.stringify(newData.data));
                     sessionStorage.setItem('x_token', JSON.stringify(newData.data));
                     newData = data;
-
+                    //如果是软件部的那个需要登录2个旧系统的，先发送登录情况
                     me.softDeptLogin(req.username, password, passwordMd5Upper);
 
                     res(newData);
-
-                    //如果是软件部的那个需要登录2个旧系统的，先发送登录情况
 
                 } else {
                     res({});

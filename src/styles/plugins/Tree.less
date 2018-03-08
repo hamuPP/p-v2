@@ -1,0 +1,135 @@
+/**
+* Created by tr
+*/
+
+/* tree 样式 -- start-- */
+.ls-tree-list{
+    padding: 0;
+    &.single-line{//文字强行一行显示完，不就换行
+        .tree-label-text{
+            white-space: nowrap;
+        }
+    }
+    .tree-label-text{
+        &:hover{
+            background: #eaf4fe;
+        }
+        &.text-selected{
+            background: #ced7e0;
+        }
+    }
+
+}
+.ls-tree-item{
+    display: list-item;
+    position: relative;
+    list-style:none ;
+    &:before{
+        content: '';
+        position: absolute;
+        left: -28px;
+        top:0;
+        bottom:0;
+        //border-left: dashed 1px #f00;
+    }
+    &:last-child{
+        &:before{
+            height:12px;
+            bottom: auto;
+        }
+    }
+    > .tree-label{
+        display: block;
+        position: relative;
+        height: auto;
+        line-height: 24px;
+        padding-left: 16px;
+        font-size: 14px;
+        color: #333;
+        &.tree-check{
+            padding-left: 32px;
+        }
+
+        > .tree-show-label{
+            &:after{
+                content: '';
+                position: absolute;
+                top: 6px;
+                left: 16px;
+                width: 12px;
+                height: 12px;
+                border:solid 1px #ccc;
+                border-radius: 2px;
+            }
+            &.active{
+                &:after{
+                    content: "";
+                    background-color: #409eff;
+                    border-color: #409eff;
+                    z-index: 9;
+                }
+                &:before{
+                    box-sizing: content-box;
+                    content: "";
+                    position: absolute;
+                    top:7px;
+                    left:20px;
+                    width: 3px;
+                    height: 7px;
+                    border: 1px solid @white;
+                    border-left: 0;
+                    border-top: 0;
+                    transform: rotate(45deg);
+                    transition: transform .15s cubic-bezier(.71,-.46,.88,.6) .05s;
+                    transform-origin: center;
+                    z-index: 99;
+                }
+                &.tree-check{
+                    &:before{
+                        content: '';
+                        position: absolute;
+                        top: 11px;
+                        left: 19px;
+                        height: auto;
+                        width: 4px;
+                        border-left:1px solid @white;
+                        border-top: 1px solid @white;
+                        transform: rotate(0);
+                    }
+                }
+            }
+        }
+        > .tree-icon{
+            &:after{
+                content: '';
+                position: absolute;
+                top:8px;
+                left: 0;
+                width: 0;
+                height: 0;
+                border-top: solid 6px @black-light;
+                border-left: solid 6px transparent;
+                border-right: solid 6px transparent;
+                transform: rotate(-90deg);
+                transition: .3s;
+            }
+            &.tree-icon-select{
+                &:after{
+                    transform: rotate(0);
+                }
+            }
+        }
+    }
+
+    .ls-tree-list{
+        position: relative;
+        list-style: none;
+        padding-left: 28px;
+        overflow: hidden;
+
+        li{
+            padding: 5px 0;
+        }
+    }
+}
+/* tree 样式 -- end-- */

@@ -1,0 +1,148 @@
+/**
+* 业务模块：首页的通讯录的页面样式
+ */
+
+.addressbook-wrapper{
+    position: relative;
+    display: block;
+    float: left;
+    height: 370px;
+    width: 66.3%;
+    padding:0 20px;
+    overflow: hidden;
+    margin:10px 0 0 .2%;
+    background: #fff;
+    &>.main-content{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+
+        //&>.inner-content{
+        //    display: flex;
+        //    flex-direction: column;
+        //    height: 100%;
+        //    width: 100%;
+        //}
+
+    }
+
+    .content-title{
+        height: 51px;
+        border-bottom:1px solid #dcdcdc;
+
+        .title{
+            padding: 0;
+            margin: 0;
+            text-align: left;
+            line-height: 50px;
+            float: left;
+            color: #407DD1;
+        }
+
+        .toolbar-right{
+            float: right;
+            width: 24px;
+            height: 24px;
+            margin-top:15px;
+            background: #eee;
+            border:1px solid #ccc;
+            text-align: center;
+        }
+    }
+
+    .addressbook-right-icon{
+        font-size:18px;
+        line-height:23px;
+        color:#555;
+        cursor: pointer;
+    }
+
+    .content-body{
+        flex:1;
+        padding:20px 0 0;
+        overflow: hidden;
+
+        &>.main-content{
+            //display: flex;
+            //flex-direction: column;
+            display: block;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+
+            &>.inner-content{
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                width: 100%;
+            }
+        }
+
+        .list-toolbar{
+            width: 100%;
+            height: 34px;
+            padding-bottom: 10px;
+            overflow: hidden;
+            .drop-box{
+                float: left;
+                width: 80px;
+                overflow: hidden;
+            }
+        }
+
+        .list-body{
+            flex: 1;
+            overflow: hidden;
+        }
+    }
+
+    .search-box{
+        float: left;
+        width: 140px;
+        margin-left: 10px;
+        border:1px solid #dcdcdc;
+        overflow: hidden;
+
+        .search-input-box{
+            display: block;
+            float: left;
+            width: 114px;
+            height: 22px;
+        }
+
+        .search-input{
+            outline: none;
+            color:#333;
+            text-indent: 10px;
+            height: 24px;
+            line-height: 22px;
+            border:none;
+            padding: 0;
+            margin: 0;
+        }
+    }
+
+    .search-button{
+        display: block;
+        float: right;
+        width: 23px;
+        height: 22px;
+        border-left:1px solid #dcdcdc;
+        background: #F0F0F0;
+        text-align: center;
+        padding-top: 2px;
+        cursor:pointer;
+    }
+
+    .iconfont{
+        font-size:12px;
+        color: #666;
+        cursor: pointer;
+
+        &.font-s48{
+            font-size: 48px;
+            color: white;
+        }
+    }
+}

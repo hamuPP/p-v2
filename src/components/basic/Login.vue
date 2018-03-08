@@ -39,7 +39,7 @@
                     <p id="msgTxt">{{loginDataValue}}</p>
                 </div>
                 <template v-if="!isShow">
-                    <button type="submit" class="btn btn-primary" @click="loginEle">
+                    <button type="button" class="btn btn-primary" @click="loginEle">
                         <span class="text">登录</span>
                     </button>
                 </template>
@@ -88,6 +88,7 @@
              * @param val 返回的数据信息
              */
             loginData(val){
+                debugger;
                 const that = this;
 
                 that.loginDataValue = val.msg;

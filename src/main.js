@@ -25,10 +25,11 @@ import "./styles/font_newImg/iconfont.css"
 import "./styles/style.css";
 import "./styles/all.css";
 import "./styles/animation.css";
+
+//todo 这个css后期整理一下，有些样式不需要全局
+import './styles/main.less';
 //引入公共css end
 
-// import "./libs/jquery.min.js";
-// import "./libs/md5.js";
 
 // 路由配置
 const RouterConfig = {

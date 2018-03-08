@@ -1,0 +1,39 @@
+@charset "UTF-8";
+/**
+* styles for 【functionmap】module/page
+* Created by tangy 2018/01/04
+ */
+
+.functionmap-full-loading-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    & > .modal-cls{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background-color: #000;
+        opacity: .5;
+    }
+    & > .box-cls {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 312px;
+        height: 124px;
+        margin-top: -62px;
+        margin-left: -156px;
+        background-color: #fff;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+
+        & > img {
+            display: block;
+            margin: 51px auto;
+        }
+    }
+}

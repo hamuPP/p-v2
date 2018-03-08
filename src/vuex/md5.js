@@ -1,7 +1,7 @@
 /**
  * Created by ty on 18/3/7.
  */
-class Md5 {
+class MD5 {
     constructor() {
 
         this.hexcase = 0;
@@ -20,9 +20,9 @@ class Md5 {
     binl2hex(binarray) {
         let that = this;
 
-        var hex_tab = that.hexcase ? "0123456789ABCDEF" : "0123456789abcdef";
-        var str = "";
-        for (var i = 0; i < binarray.length * 4; i++) {
+        let hex_tab = that.hexcase ? "0123456789ABCDEF" : "0123456789abcdef";
+        let str = "";
+        for (let i = 0; i < binarray.length * 4; i++) {
             str += hex_tab.charAt((binarray[i >> 2] >> ((i % 4) * 8 + 4)) & 0xF) +
                 hex_tab.charAt((binarray[i >> 2] >> ((i % 4) * 8 )) & 0xF);
         }
@@ -35,15 +35,15 @@ class Md5 {
         /* append padding */
         x[len >> 5] |= 0x80 << ((len) % 32);
         x[(((len + 64) >>> 9) << 4) + 14] = len;
-        var a = 1732584193;
-        var b = -271733879;
-        var c = -1732584194;
-        var d = 271733878;
-        for (var i = 0; i < x.length; i += 16) {
-            var olda = a;
-            var oldb = b;
-            var oldc = c;
-            var oldd = d;
+        let a = 1732584193;
+        let b = -271733879;
+        let c = -1732584194;
+        let d = 271733878;
+        for (let i = 0; i < x.length; i += 16) {
+            let olda = a;
+            let oldb = b;
+            let oldc = c;
+            let oldd = d;
             a = that.md5_ff(a, b, c, d, x[i + 0], 7, -680876936);
             d = that.md5_ff(d, a, b, c, x[i + 1], 12, -389564586);
             c = that.md5_ff(c, d, a, b, x[i + 2], 17, 606105819);
@@ -76,51 +76,53 @@ class Md5 {
             d = that.md5_gg(d, a, b, c, x[i + 2], 9, -51403784);
             c = that.md5_gg(c, d, a, b, x[i + 7], 14, 1735328473);
             b = that.md5_gg(b, c, d, a, x[i + 12], 20, -1926607734);
-            a = md5_hh(a, b, c, d, x[i + 5], 4, -378558);
-            d = md5_hh(d, a, b, c, x[i + 8], 11, -2022574463);
-            c = md5_hh(c, d, a, b, x[i + 11], 16, 1839030562);
-            b = md5_hh(b, c, d, a, x[i + 14], 23, -35309556);
-            a = md5_hh(a, b, c, d, x[i + 1], 4, -1530992060);
-            d = md5_hh(d, a, b, c, x[i + 4], 11, 1272893353);
-            c = md5_hh(c, d, a, b, x[i + 7], 16, -155497632);
-            b = md5_hh(b, c, d, a, x[i + 10], 23, -1094730640);
-            a = md5_hh(a, b, c, d, x[i + 13], 4, 681279174);
-            d = md5_hh(d, a, b, c, x[i + 0], 11, -358537222);
-            c = md5_hh(c, d, a, b, x[i + 3], 16, -722521979);
-            b = md5_hh(b, c, d, a, x[i + 6], 23, 76029189);
-            a = md5_hh(a, b, c, d, x[i + 9], 4, -640364487);
-            d = md5_hh(d, a, b, c, x[i + 12], 11, -421815835);
-            c = md5_hh(c, d, a, b, x[i + 15], 16, 530742520);
-            b = md5_hh(b, c, d, a, x[i + 2], 23, -995338651);
-            a = md5_ii(a, b, c, d, x[i + 0], 6, -198630844);
-            d = md5_ii(d, a, b, c, x[i + 7], 10, 1126891415);
-            c = md5_ii(c, d, a, b, x[i + 14], 15, -1416354905);
-            b = md5_ii(b, c, d, a, x[i + 5], 21, -57434055);
-            a = md5_ii(a, b, c, d, x[i + 12], 6, 1700485571);
-            d = md5_ii(d, a, b, c, x[i + 3], 10, -1894986606);
-            c = md5_ii(c, d, a, b, x[i + 10], 15, -1051523);
-            b = md5_ii(b, c, d, a, x[i + 1], 21, -2054922799);
-            a = md5_ii(a, b, c, d, x[i + 8], 6, 1873313359);
-            d = md5_ii(d, a, b, c, x[i + 15], 10, -30611744);
-            c = md5_ii(c, d, a, b, x[i + 6], 15, -1560198380);
-            b = md5_ii(b, c, d, a, x[i + 13], 21, 1309151649);
-            a = md5_ii(a, b, c, d, x[i + 4], 6, -145523070);
-            d = md5_ii(d, a, b, c, x[i + 11], 10, -1120210379);
-            c = md5_ii(c, d, a, b, x[i + 2], 15, 718787259);
-            b = md5_ii(b, c, d, a, x[i + 9], 21, -343485551);
-            a = safe_add(a, olda);
-            b = safe_add(b, oldb);
-            c = safe_add(c, oldc);
-            d = safe_add(d, oldd);
+            a = that.md5_hh(a, b, c, d, x[i + 5], 4, -378558);
+            d = that.md5_hh(d, a, b, c, x[i + 8], 11, -2022574463);
+            c = that.md5_hh(c, d, a, b, x[i + 11], 16, 1839030562);
+            b = that.md5_hh(b, c, d, a, x[i + 14], 23, -35309556);
+            a = that.md5_hh(a, b, c, d, x[i + 1], 4, -1530992060);
+            d = that.md5_hh(d, a, b, c, x[i + 4], 11, 1272893353);
+            c = that.md5_hh(c, d, a, b, x[i + 7], 16, -155497632);
+            b = that.md5_hh(b, c, d, a, x[i + 10], 23, -1094730640);
+            a = that.md5_hh(a, b, c, d, x[i + 13], 4, 681279174);
+            d = that.md5_hh(d, a, b, c, x[i + 0], 11, -358537222);
+            c = that.md5_hh(c, d, a, b, x[i + 3], 16, -722521979);
+            b = that.md5_hh(b, c, d, a, x[i + 6], 23, 76029189);
+            a = that.md5_hh(a, b, c, d, x[i + 9], 4, -640364487);
+            d = that.md5_hh(d, a, b, c, x[i + 12], 11, -421815835);
+            c = that.md5_hh(c, d, a, b, x[i + 15], 16, 530742520);
+            b = that.md5_hh(b, c, d, a, x[i + 2], 23, -995338651);
+            a = that.md5_ii(a, b, c, d, x[i + 0], 6, -198630844);
+            d = that.md5_ii(d, a, b, c, x[i + 7], 10, 1126891415);
+            c = that.md5_ii(c, d, a, b, x[i + 14], 15, -1416354905);
+            b = that.md5_ii(b, c, d, a, x[i + 5], 21, -57434055);
+            a = that.md5_ii(a, b, c, d, x[i + 12], 6, 1700485571);
+            d = that.md5_ii(d, a, b, c, x[i + 3], 10, -1894986606);
+            c = that.md5_ii(c, d, a, b, x[i + 10], 15, -1051523);
+            b = that.md5_ii(b, c, d, a, x[i + 1], 21, -2054922799);
+            a = that.md5_ii(a, b, c, d, x[i + 8], 6, 1873313359);
+            d = that.md5_ii(d, a, b, c, x[i + 15], 10, -30611744);
+            c = that.md5_ii(c, d, a, b, x[i + 6], 15, -1560198380);
+            b = that.md5_ii(b, c, d, a, x[i + 13], 21, 1309151649);
+            a = that.md5_ii(a, b, c, d, x[i + 4], 6, -145523070);
+            d = that.md5_ii(d, a, b, c, x[i + 11], 10, -1120210379);
+            c = that.md5_ii(c, d, a, b, x[i + 2], 15, 718787259);
+            b = that.md5_ii(b, c, d, a, x[i + 9], 21, -343485551);
+            a = that.safe_add(a, olda);
+            b = that.safe_add(b, oldb);
+            c = that.safe_add(c, oldc);
+            d = that.safe_add(d, oldd);
         }
         return Array(a, b, c, d);
     }
 
     str2binl(str) {
-        var bin = Array();
-        var mask = (1 << chrsz) - 1;
-        for (var i = 0; i < str.length * chrsz; i += chrsz)
-            bin[i >> 5] |= (str.charCodeAt(i / chrsz) & mask) << (i % 32);
+        let that = this;
+
+        let bin = Array();
+        let mask = (1 << that.chrsz) - 1;
+        for (let i = 0; i < str.length * that.chrsz; i += that.chrsz)
+            bin[i >> 5] |= (str.charCodeAt(i / that.chrsz) & mask) << (i % 32);
         return bin;
     }
 
@@ -136,16 +138,28 @@ class Md5 {
 
     md5_cmn(q, a, b, x, s, t) {
         let that = this;
-        return that.safe_add(bit_rol(safe_add(safe_add(a, q), safe_add(x, t)), s), b);
+        return that.safe_add(that.bit_rol(that.safe_add(that.safe_add(a, q), that.safe_add(x, t)), s), b);
     }
 
     safe_add(x, y) {
-        var lsw = (x & 0xFFFF) + (y & 0xFFFF);
-        var msw = (x >> 16) + (y >> 16) + (lsw >> 16);
+        let lsw = (x & 0xFFFF) + (y & 0xFFFF);
+        let msw = (x >> 16) + (y >> 16) + (lsw >> 16);
         return (msw << 16) | (lsw & 0xFFFF);
     }
 
+    bit_rol(num, cnt) {
+        return (num << cnt) | (num >>> (32 - cnt));
+    }
 
+    md5_hh(a, b, c, d, x, s, t) {
+        let that = this;
+        return that.md5_cmn(b ^ c ^ d, a, b, x, s, t);
+    }
+
+    md5_ii(a, b, c, d, x, s, t) {
+        let that = this;
+        return that.md5_cmn(c ^ (b | (~d)), a, b, x, s, t);
+    }
 }
 
-export default Md5;
+export default MD5;

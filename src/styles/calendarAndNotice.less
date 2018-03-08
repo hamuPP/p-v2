@@ -1,0 +1,1184 @@
+/*********************************************************************
+ * Created by tr on 2017/12/26.                                       *
+ *********************************************************************/
+@import 'common';
+
+.notice-wrapper {
+  display: block;
+  float: left;
+  height: 370px;
+  width: 66.3%;
+  padding: 0 20px;
+  overflow: hidden;
+  margin: 10px 0 0 .2%;
+  background: #fff;
+}
+
+/*置顶样式*/
+.noticeTop {
+  display: inline-block;
+  width: 32px;
+  height: 14px;
+  line-height: 6px;
+  text-align: center;
+  color: @activeButton;
+  clear: both;
+  border: 1px solid @activeButton;
+  vertical-align: top;
+  .mt(2px);
+  > sub {
+    display: inline-block;
+    .font-size10();
+  }
+}
+
+/*返回上级样式*/
+.goBackTo {
+  width: 96px;
+  height: 24px;
+  color: @black-deep;
+  vertical-align: middle;
+  border: 1px solid @border-table;
+  background-color: @white-deep;
+  .margin(5px, 0, 0, 10px);
+
+  > .iconfont {
+    font-size: 12px;
+    color: @black-deep;
+    margin-right: 5px;
+  }
+}
+
+/* start 日程表的样式 start */
+.calendar-notice-wrapper {
+  .left-content {
+    .content-body {
+      .pt(20px);
+      .calendar-date {
+        float: left;
+        width: -moz-calc(~"60% -10px");
+        width: -webkit-calc(~"60%-10px");
+        width: calc(~"60% - 10px");
+        .mr(20px);
+      }
+      .calendar-content {
+        display: inline-block;
+        width: -moz-calc(~"40% -12px");
+        width: -webkit-calc(~"40%-12px");
+        width: calc(~"40% - 12px");
+        text-align: left;
+        .iconfont {
+          display: inline-block;
+          height: 32px;
+          width: 24px;
+          overflow: hidden;
+          font-size: 24px;
+        }
+        .addTask {
+          border-bottom: 1px solid @border-table;
+          .pb(10px);
+          cursor: pointer;
+        }
+        .task-title {
+          display: inline-block;
+          width: -moz-calc(~"100% -30px");
+          width: -webkit-calc(~"100%-30px");
+          width: calc(~"100% - 30px");
+          > p {
+            width: 100%;
+            .margin();
+            text-align: left;
+            .text-overflow-ellipsis;
+            &:first-child {
+              color: @active-blue;
+              font-size: 14px;
+              font-weight: bold;
+            }
+            &:last-child {
+              .font-size10();
+              color: @black-light;
+              .ml(-10px);
+            }
+          }
+        }
+        .task-list {
+          .padding();
+          .margin();
+          .mt(10px);
+          width: 100%;
+          height: 215px;
+          overflow-y: auto;
+          &.task-detail {
+            position: relative;
+            background: @white-deep;
+            height: 220px;
+            .mt(10px);
+            > li {
+              &:last-child {
+                > p {
+                  height: 130px;
+                  overflow-y: auto;
+                }
+              }
+              &.notStyle {
+                .pl(15px);
+                button {
+                  position: absolute;
+                  right: 0;
+                  top: 140px;
+                  width: -moz-calc(~"50%");
+                  width: -webkit-calc(~"50%");
+                  width: calc(~"50%");
+                  height: 24px;
+                  line-height: 24px;
+                  color: @black;
+                  background: @white-deep;
+                  border: 0;
+                  cursor: pointer;
+                  &.addTask {
+                    left: 0;
+                    right: inherit;
+                    color: @white;
+                    background: @active-blue;
+                  }
+                }
+              }
+            }
+          }
+          > li {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            height: 40px;
+            .pl(15px);
+            .mb(17px);
+            cursor: pointer;
+            &:before {
+              position: absolute;
+              left: 0;
+              content: " ";
+              width: 0;
+              height: 40px;
+              border-left: 4px solid @active-blue;
+            }
+            &.notStyle {
+              .padding();
+              .margin();
+              &:before {
+                border: 0;
+              }
+              &:hover {
+                background: transparent;
+              }
+            }
+            > p {
+              .margin();
+              .padding();
+              width: -moz-calc(~"100% - 20px");
+              width: -webkit-calc(~"100% - 20px");
+              width: calc(~"100% - 20px");
+              .text-overflow-ellipsis;
+              font-size: 12px;
+              color: @black;
+              &:first-child {
+                color: @black-light;
+              }
+            }
+            &:hover {
+              background: @white-deep;
+              > .iconfont {
+                display: inline-block;
+              }
+            }
+            > .iconfont {
+              display: none;
+              position: absolute;
+              right: 0;
+              top: 12px;
+              font-size: 16px;
+              cursor: pointer;
+            }
+          }
+        }
+        &.task_add {
+          > input,
+          textarea {
+            width: 100%;
+            .mb(10px);
+            .padding(10px, 8px, 10px, 8px);
+            border: 1px solid @border-table;
+          }
+          > input {
+            height: 32px;
+            line-height: 32px;
+          }
+          > textarea {
+            height: 120px;
+            resize: none;
+          }
+          > div {
+            .mb(10px);
+          }
+          > button {
+            width: -moz-calc(~"50% - 6px");
+            width: -webkit-calc(~"50% - 6px");
+            width: calc(~"50% - 6px");
+            height: 24px;
+            line-height: 24px;
+            color: @black;
+            background: @white-deep;
+            border: 1px solid @border-table;
+            cursor: pointer;
+            &.addTask {
+              color: @white;
+              background: @active-blue;
+              .mr(6px);
+            }
+          }
+        }
+      }
+    }
+  }
+  .right-content {
+    > .content-title {
+      border: 0;
+    }
+    .toolbar-right {
+      &.noticeManage {
+        font-size: 12px;
+        width: 80px;
+        height: 24px;
+        line-height: 24px;
+        text-align: center;
+        .mr(10px);
+        background: @activeButton;
+        color: white;
+        border: 0;
+      }
+    }
+  }
+}
+.calendar-notice-wrapper-new {
+  .left-content {
+    .content-body {
+      .pt(20px);
+      .calendar-date {
+        float: left;
+        width: -moz-calc(~"60% -10px");
+        width: -webkit-calc(~"60%-10px");
+        width: calc(~"60% - 10px");
+        .mr(20px);
+      }
+      .calendar-content {
+        display: inline-block;
+        width: -moz-calc(~"40% -12px");
+        width: -webkit-calc(~"40%-12px");
+        width: calc(~"40% - 12px");
+        text-align: left;
+        .iconfont {
+          display: inline-block;
+          height: 32px;
+          width: 24px;
+          overflow: hidden;
+          font-size: 24px;
+        }
+        .addTask {
+          border-bottom: 1px solid @border-table;
+          .pb(10px);
+          cursor: pointer;
+        }
+        .task-title {
+          display: inline-block;
+          width: -moz-calc(~"100% -30px");
+          width: -webkit-calc(~"100%-30px");
+          width: calc(~"100% - 30px");
+          > p {
+            width: 100%;
+            .margin();
+            text-align: left;
+            .text-overflow-ellipsis;
+            &:first-child {
+              color: @active-blue;
+              font-size: 14px;
+              font-weight: bold;
+            }
+            &:last-child {
+              .font-size10();
+              color: @black-light;
+              .ml(-10px);
+            }
+          }
+        }
+        .task-list {
+          .padding();
+          .margin();
+          .mt(10px);
+          width: 100%;
+          height: 215px;
+          overflow-y: auto;
+          &.task-detail {
+            position: relative;
+            background: @white-deep;
+            height: 220px;
+            .mt(10px);
+            > li {
+              &:last-child {
+                > p {
+                  height: 130px;
+                  overflow-y: auto;
+                }
+              }
+              &.notStyle {
+                .pl(15px);
+                button {
+                  position: absolute;
+                  right: 0;
+                  top: 140px;
+                  width: -moz-calc(~"50%");
+                  width: -webkit-calc(~"50%");
+                  width: calc(~"50%");
+                  height: 24px;
+                  line-height: 24px;
+                  color: @black;
+                  background: @white-deep;
+                  border: 0;
+                  cursor: pointer;
+                  &.addTask {
+                    left: 0;
+                    right: inherit;
+                    color: @white;
+                    background: @active-blue;
+                  }
+                }
+              }
+            }
+          }
+          > li {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            height: 40px;
+            .pl(15px);
+            .mb(17px);
+            cursor: pointer;
+            &:before {
+              position: absolute;
+              left: 0;
+              content: " ";
+              width: 0;
+              height: 40px;
+              border-left: 4px solid @active-blue;
+            }
+            &.notStyle {
+              .padding();
+              .margin();
+              &:before {
+                border: 0;
+              }
+              &:hover {
+                background: transparent;
+              }
+            }
+            > p {
+              .margin();
+              .padding();
+              width: -moz-calc(~"100% - 20px");
+              width: -webkit-calc(~"100% - 20px");
+              width: calc(~"100% - 20px");
+              .text-overflow-ellipsis;
+              font-size: 12px;
+              color: @black;
+              &:first-child {
+                color: @black-light;
+              }
+            }
+            &:hover {
+              background: @white-deep;
+              > .iconfont {
+                display: inline-block;
+              }
+            }
+            > .iconfont {
+              display: none;
+              position: absolute;
+              right: 0;
+              top: 12px;
+              font-size: 16px;
+              cursor: pointer;
+            }
+          }
+        }
+        &.task_add {
+          > input,
+          textarea {
+            width: 100%;
+            .mb(10px);
+            .padding(10px, 8px, 10px, 8px);
+            border: 1px solid @border-table;
+          }
+          > input {
+            height: 32px;
+            line-height: 32px;
+          }
+          > textarea {
+            height: 120px;
+            resize: none;
+          }
+          > div {
+            .mb(10px);
+          }
+          > button {
+            width: -moz-calc(~"50% - 6px");
+            width: -webkit-calc(~"50% - 6px");
+            width: calc(~"50% - 6px");
+            height: 24px;
+            line-height: 24px;
+            color: @black;
+            background: @white-deep;
+            border: 1px solid @border-table;
+            cursor: pointer;
+            &.addTask {
+              color: @white;
+              background: @active-blue;
+              .mr(6px);
+            }
+          }
+        }
+      }
+    }
+  }
+  .right-content {
+    > .content-title {
+      border: 0;
+    }
+    .toolbar-right {
+      &.noticeManage {
+        font-size: 12px;
+        width: 80px;
+        height: 24px;
+        line-height: 24px;
+        text-align: center;
+        .mr(10px);
+        background: @activeButton;
+        color: white;
+        border: 0;
+      }
+    }
+  }
+}
+
+/* end 日程表的样式 end */
+
+/* start 通知公告的样式 start */
+.notice {
+  height: 100%;
+}
+
+.notice-list {
+  .margin();
+  .padding();
+  height: 275px;
+  overflow-y: auto;
+  width: 100%;
+  &.noticeFull-list {
+    height: -moz-calc(~"100% - 105px");
+    height: -webkit-calc(~"100% - 105px");
+    height: calc(~"100% - 105px");
+    .padding(7px, 22%, 0, 22%)
+  }
+  > li {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 34px;
+    .padding(18px, 10px, 0, 15px);
+    .mt(-5px);
+    overflow: hidden;
+    &:before {
+      position: absolute;
+      top: 24px;
+      left: 0;
+      content: "";
+      height: 6px;
+      width: 6px;
+      background: @black-deep;
+      .border-radius(50%);
+    }
+    > p {
+      font-size: 12px;
+      color: @black-light;
+      line-height: 24px;
+      .margin();
+      cursor: pointer;
+      > label {
+        height: 16px;
+        line-height: initial;
+        display: inline-block;
+        max-width: -moz-calc(~"100% - 120px");
+        max-width: -webkit-calc(~"100% - 120px");
+        max-width: calc(~"100% - 120px");
+        .text-overflow-ellipsis;
+        color: @black;
+        cursor: pointer;
+        &:hover,
+        &:focus {
+          color: @activeButton;
+          text-decoration: underline
+        }
+      }
+      &.notice-dec {
+        text-indent: 2em;
+        .text-overflow-ellipsis-line(4);
+      }
+      > .notice-date {
+        color: @black-deep;
+        float: right;
+        letter-spacing: -1px;
+        width: 78px;
+        height: 12px;
+        line-height: initial;
+      }
+    }
+  }
+}
+
+/* end 通知公告的样式 end */
+
+/* start 通知公告全屏的样式 start*/
+.noticeFull {
+  .padding(36px, 38px, 36px, 48px);
+  &.noticeManage {
+    > .notice-title {
+      height: 48px;
+      border-bottom: 1px solid @border-table;
+    }
+    > .notice-content {
+      height: -moz-calc(~"100% - 140px");
+      height: -webkit-calc(~"100% - 140px");
+      height: calc(~"100% - 140px");
+    }
+  }
+  &.noticeEdit {
+    .margin();
+  }
+  > .notice-title {
+    .mb(20px);
+    > p {
+      font-size: 24px;
+      color: @black-deepC;
+      float: left;
+    }
+    > .toolbar-right {
+      float: right;
+      width: 24px;
+      height: 24px;
+      background: #eee;
+      border: 1px solid #ccc;
+      text-align: center;
+      cursor: pointer;
+      &.noticeManage {
+        font-size: 12px;
+        width: 80px;
+        line-height: 24px;
+        .mr(10px);
+        background: @activeButton;
+        color: white;
+        border: 0;
+      }
+    }
+  }
+  > .notice-search {
+    height: 24px;
+    .mb(20px);
+    > .notice-input,
+    > .notice-time {
+      float: left;
+      width: 92px;
+      height: 24px;
+      &.notice-pr10 {
+        .mr(10px);
+      }
+      & + label {
+        width: 20px;
+        line-height: 24px;
+        color: @black;
+        text-align: center;
+      }
+      & + .notice-keyword {
+        width: 176px;
+      }
+    }
+    > .notice-time {
+      position: relative;
+      width: 116px;
+      > .form-control {
+        height: 100%;
+        font-size: 12px;
+      }
+      .iconfont {
+        position: absolute;
+        top: 4px;
+        right: 18px;
+        display: inline-block;
+        font-size: 12px;
+        .padding();
+        .margin();
+      }
+
+    }
+    > .search {
+      width: 72px;
+      height: 24px;
+      font: 12px / 24px;
+      color: @black-deep;
+      text-align: center;
+      border: 1px solid @border-table;
+      background: @white-deep;
+      cursor: pointer;
+    }
+    > .notice-right {
+      float: right;
+      width: 200px;
+      height: 24px;
+    }
+  }
+}
+
+/* end 通知公告全屏的样式 end*/
+
+/* start 通知公告详情样式 start */
+.noticeDetails-content {
+  height: 100%;
+  .padding(7px, 22%, 0, 22%);
+  > p {
+    text-align: center;
+    .mt(10px);
+    font-size: 12px;
+    color: @black-light;
+    &:first-child {
+      .padding();
+      .margin();
+      .pb(20px);
+      border-bottom: 1px solid @border-table;
+      > label {
+        font-size: 14px;
+        font-weight: bold;
+        color: @black;
+        .margin();
+        .padding();
+      }
+    }
+  }
+  > .notice-content {
+    height: -moz-calc(~"100% - 330px");
+    height: -webkit-calc(~"100% - 330px");
+    height: calc(~"100% - 330px");
+    .mb(20px);
+    overflow-y: auto;
+    > div {
+      
+    }
+  }
+  > .notice-footer {
+    > p {
+      font-size: 12px;
+      color: @black-deep;
+      .margin();
+      .mb(60px);
+      > a {
+        color: @blue-link;
+      }
+      &.buttonEvt {
+        text-align: center;
+        .mb(48px);
+        > button {
+          width: 80px;
+          height: 24px;
+          font: 12px/24px;
+          color: @black-deep;
+          background: @white-deep;
+          border: 1px solid @border-table;
+          &.active {
+            .ml(10px);
+            color: @white;
+            background: @active-blue;
+            border-color: @active-blue;
+          }
+        }
+      }
+    }
+    > ul {
+      width: 100%;
+      height: 142px;
+      .column-count(2);
+      border-top: 1px solid @border-table;
+      overflow: hidden;
+      li {
+        &.showBorder {
+          border-right: 1px solid @border-table;
+        }
+      }
+    }
+  }
+}
+
+/* end 通知公告详情样式 end */
+
+/* start 通知编辑样式 start */
+.noticeEdit {
+  .noticeEdit-content {
+    height: -moz-calc(~"100% - 13px");
+    height: -webkit-calc(~"100% - 13px");
+    height: calc(~"100% - 13px");
+    overflow-y: auto;
+    .margin(0, -33px, 0, -48px);
+    .padding(0, 38px, 0, 48px);
+    .notice-edit-content {
+      //height: -moz-calc(~"100% + 29px");
+      //height: -webkit-calc(~"100% + 29px");
+      //height: calc(~"100% + 29px");
+      border: 1px solid @white-deep;
+      .mb(50px);
+      overflow: hidden;
+      > div {
+        position: relative;
+        font-size: 12px;
+        color: @black-deep;
+        border-bottom: 1px solid @white-deep;
+        &.last{
+          position: relative;
+          > button{
+            position: relative;
+            top: -17px;
+            font-size: 12px;
+            color: @black-deep;
+            background: @white-deep;
+            border: 1px solid @border-table;
+            cursor: pointer;
+            &.release{
+              color:@white;
+              background: @active-blue;
+              border: 1px solid @active-blue;
+            }
+          }
+        }
+        > .content-label {
+          min-height: 43px;
+          width: 17%;
+          text-align: right;
+          .margin();
+          .mr(10px);
+          .padding(13px, 12px, 13px, 0);
+          border-right: 1px solid @white-deep;
+          &.content-file {
+            border: 0;
+            .margin();
+            vertical-align: top;
+          }
+          > i {
+            color: @red-deep;
+          }
+        }
+        > .input-width {
+          width: 60%;
+          min-width: 100px;
+          height: 24px;
+          .paddingMixin(5px);
+          border: 1px solid @border-table;
+        }
+        > .radioBox-item,
+        > .checkbox-item {
+          position: relative;
+          display: inline-block;
+          .mr(40px);
+          .pl(21px);
+          cursor: pointer;
+          &.active {
+            &:after {
+              content: "";
+              position: absolute;
+              top: 6px;
+              left: 3px;
+              width: 6px;
+              height: 6px;
+              .border-radius(50%);
+              background: @black;
+            }
+          }
+          &:before {
+            content: "";
+            position: absolute;
+            top: 3px;
+            left: 0;
+            width: 12px;
+            height: 12px;
+            border: 1px solid @black;
+            .border-radius(50%);
+          }
+
+        }
+        > button {
+          width: 80px;
+          height: 24px;
+          background: @white-deep;
+          border: 1px solid @border-table;
+          &.active {
+            color: @white;
+            background: @activeButton;
+            border-color: @activeButton;
+          }
+        }
+        > .notice-time {
+          display: inline-block;
+          position: relative;
+          top:8px;
+          width: 116px;
+          height: 24px;
+          cursor: pointer;
+          > .form-control {
+            position: absolute;
+            height: 100%;
+            line-height: 24px;
+            font-size: 12px;
+            .paddingMixin(0 5px);
+          }
+          .iconfont {
+            position: absolute;
+            right: 15px;
+            display: inline-block;
+            font-size: 12px;
+            .padding();
+            .margin();
+          }
+        }
+        > .checkbox-item {
+          &:before {
+            .border-radius(0);
+            border-color: @black-deep;
+          }
+          &.active {
+            &:after {
+              box-sizing: content-box;
+              content: "";
+              position: absolute;
+              top: 4px;
+              left: 4px;
+              width: 3px;
+              height: 7px;
+              border: 1px solid @black-deep;
+              border-left: 0;
+              border-top: 0;
+              .border-radius(0);
+              background: transparent;
+              transform: rotate(45deg);
+              transition: transform .15s cubic-bezier(.71, -.46, .88, .6) .05s;
+              transform-origin: center;
+            }
+          }
+          &.display {
+            color: @black-deepC;
+            &:before {
+              background: @white-deep;
+              border-color: @black-deepC;
+            }
+          }
+        }
+        > .button-temp {
+          display: inline-block;
+          width: 80px;
+          height: 24px;
+          font-size: 12px;
+          color: @black-deep;
+          border: 1px solid @border-table;
+          > button {
+            width: 40px;
+            height: 100%;
+            color: @black-deep;
+            text-align: center;
+            .mr(-5px);
+            background: transparent;
+            border: 0;
+            &.active {
+              color: @white;
+              background: @active-blue;
+            }
+            &.bad {
+              background: @black-deepC;
+            }
+          }
+        }
+        > .content-select {
+          display: inline-block;
+          width: 80px;
+          height: 24px;
+          .margin();
+          vertical-align: super;
+          & + em {
+            position: absolute;
+            font-style: normal;
+            margin-top: 18px;
+            margin-left: 6px;
+            color: @black-deep;
+          }
+          &.bad {
+            background: @border-table;
+          }
+          & + em {
+            &.bad {
+              color: @border-table;
+            }
+          }
+        }
+        > .icon-file {
+          display: inline-block;
+          .padding(13px, 13px, 13px, 13px);
+          .ml(-4px);
+          border-left: 1px solid @white-deep;
+          > .addFile {
+            color: @active-blue;
+            cursor: pointer;
+          }
+          > em {
+            height: 24px;
+            .padding(5px);
+            font-style: normal;
+            color: @black-deep;
+            background: @white-deep;
+            > i {
+              display: inline-block;
+              width: 10px;
+              height: 10px;
+              font-style: normal;
+              font-size: 12px;
+              color: @red-deep;
+              .ml(7px);
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* end 通知编辑样式 end */
+
+/* start 通知范围设置 start */
+.setRange {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(51, 55, 67, 0.8);
+  z-index: 9999999999;
+  > div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    .ml(-320px);
+    .mt(-300px);
+    width: 620px;
+    height: 600px;
+    background: @white;
+    .range-title {
+      position: relative;
+      width: 100%;
+      height: 48px;
+      line-height: 48px;
+      font-size: 14px;
+      color: @black-light;
+      background: @white-deep;
+      .padding(0, 20px, 0, 20px);
+      > .close {
+        position: absolute;
+        right: 20px;
+        top: 12px;
+        display: inline-block;
+        width: 25px;
+        height: 25px;
+        font-size: 20px;
+        text-align: center;
+        color: @black-deep;
+      }
+    }
+    .range-content {
+      .padding(0, 20px, 0, 20px);
+      height: -moz-calc(~"100% - 48px");
+      height: -webkit-calc(~"100% - 48px");
+      height: calc(~"100% - 48px");
+      > .range-content-title {
+        .padding(20px, 0, 20px, 0);
+        > label {
+          float: left;
+          height: 24px;
+          line-height: 24px;
+          font-size: 12px;
+          color: @black-deep;
+          vertical-align: super;
+        }
+        > div {
+          display: inline-block;
+          width: 120px;
+          height: 24px;
+          .ml(10px);
+        }
+      }
+      > .range-content-tree {
+        display: flex;
+        width: 100%;
+        height: -moz-calc(~"100% - 160px");
+        height: -webkit-calc(~"100% - 160px");
+        height: calc(~"100% - 160px");
+        > div {
+          display: flex;
+          width: 100%;
+          height: 100%;
+
+          & > .left {
+            width: -moz-calc(~"50% - 5px");
+            width: -webkit-calc(~"50% - 5px");
+            width: calc(~"50% - 5px");
+            display: block;
+            .tree-wrapper {
+              height: -moz-calc(~"100% - 24px");
+              height: -webkit-calc(~"100% - 24px");
+              height: calc(~"100% - 24px");
+              border: 1px solid #dcdcdc;
+              border-top: none;
+              overflow: auto;
+              .padding(10px, 10px, 10px, 10px);
+            }
+          }
+          & > .right {
+            .ml(10px);
+            flex: 1;
+            overflow: hidden;
+            border: 1px solid @border-table;
+            > .right-title {
+              position: relative;
+              width: 285px;
+              height: 24px;
+              font-size: 12px;
+              line-height: 24px;
+              .padding(0, 20px, 0, 20px);
+              background: @white-deep;
+              border-bottom: 1px solid @border-table;
+              > span {
+                position: absolute;
+                right: 20px;
+                cursor: pointer;
+              }
+            }
+            > .right-content {
+              width: 100%;
+              height: -moz-calc(~"100% - 45px");
+              height: -webkit-calc(~"100% - 45px");
+              height: calc(~"100% - 45px");
+              .selectTree {
+                display: block;
+                width: 100%;
+                height: 100%;
+                .padding();
+                > li {
+                  position: relative;
+                  width: 100%;
+                  height: 24px;
+                  line-height: 24px;
+                  font-size: 12px;
+                  color: @black-deep;
+                  .text-overflow-ellipsis;
+                  .pl(20px);
+                  .pr(20px);
+                  cursor: pointer;
+                  &:hover {
+                    background: @border-table;
+                  }
+                  > label {
+                    position: absolute;
+                    right: 10px;
+                    display: inline-block;
+                    width: 12px;
+                    height: 12px;
+                    font-size: 14px;
+                    color: @black-light;
+                    cursor: pointer;
+                  }
+                }
+              }
+            }
+          }
+
+        }
+      }
+      > .range-content-button {
+        text-align: center;
+        .mt(32px);
+        > button {
+          width: 80px;
+          height: 24px;
+          line-height: 24px;
+          font-size: 12px;
+          color: @black-deep;
+          background: @white-deep;
+          border: 1px solid @border-table;
+          &.active {
+            .mr(10px);
+            color: @white;
+            background: @active-blue;
+            border: 1px solid @active-blue;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* end 通知范围设置 end */
+
+/* noticeEdit page styles --start-- Created by ty 2018年01月16日18:05:02 */
+.editor-row-container {
+  & > .inner-content {
+    width: 100%;
+    display: block;
+    overflow: hidden;
+    margin-left: -1px;
+
+    .content-label {
+      display: block;
+      float: left;
+      width: 17%;
+      padding: 13px 12px 0 0;
+      margin: 0 !important;
+      text-align: right;
+      border-right: none;
+    }
+
+    .editor-container {
+      display: block;
+      width: 83%;
+      float: right;
+      border-left: 1px solid #dcdcdc;
+      padding: 5px 10% 7px 10px;
+    }
+  }
+  overflow: hidden;
+
+}
+
+/* noticeEdit page styles --end-- Created by ty 2018年01月16日18:05:02 */
+
+
+/* noticeEdit页面的附件上传的样式 start-- */
+.files-box{
+    .file-item{
+        display: block;
+    }
+    .close-icon{
+        margin-left:20px;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}
+/* noticeEdit页面的附件上传的样式 end-- */
