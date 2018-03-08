@@ -11,6 +11,7 @@ import Addressbookfullpage from '../components/Addressbookfullpage.vue'
 import noticeFull from '../components/notice/NoticeFull.vue'
 import noticeManage from '../components/notice/NoticeManage.vue'
 import NoticeDetails from '../components/notice/NoticeDetails.vue'
+import NoticeAddAndEdit from '../components/notice/NoticeAddAndEdit.vue'
 
 const routers = [
     {
@@ -61,6 +62,12 @@ const routers = [
                 path: 'noticeDetails',
                 components: {
                     a:NoticeDetails,
+                }
+            },
+            {
+                path: 'noticeEdit',
+                components: {
+                    a:NoticeAddAndEdit,
                 }
             },
         ]

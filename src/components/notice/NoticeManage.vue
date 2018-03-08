@@ -303,7 +303,7 @@
             showNoticeEdit(){
                 sessionStorage.removeItem('editNoticeId');
                 /**田蓉 修改  为了兼容ie*/
-                this.$router.push({path:'/noticeEdit'});
+                this.$router.push({path:'/index/noticeEdit'});
                 //window.location.hash = '/noticeEdit'
             },
             /**
@@ -422,7 +422,7 @@
                     case 'edit':
                         sessionStorage.setItem('editNoticeId',ele.obj.id);
                         /**田蓉 修改  为了兼容ie*/
-                        this.$router.push({path:'/noticeEdit'});
+                        this.$router.push({path:'/index/noticeEdit'});
                         //window.location.hash = '/noticeEdit';
                         break;
                     case 'delete':
