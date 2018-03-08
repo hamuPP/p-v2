@@ -20,10 +20,11 @@ module.exports = {
     },
     module: {
         // noParse: /es6-promise\.js$/,
-        rules: [{
-            test: /\.vue$/,
-            loader: 'vue-loader'
-        },
+        rules: [
+            {
+                test: /\.vue$/,
+                loader: 'vue-loader'
+            },
             {
                 test: /\.less$/,
                 use: [
@@ -49,7 +50,7 @@ module.exports = {
                 loader: 'url-loader',
                 query: {
                     limit: 30000,
-                    name: '[name].[ext]?[hash]'
+                    name: 'images/[name].[ext]?[hash]'
                 }
             }
         ]

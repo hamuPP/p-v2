@@ -8,6 +8,8 @@ import Ajax from './Ajax'
 import * as con from './constant'
 import commonMethods from './modules/commonMethods'
 
+import MD5 from './md5'
+
 
 export default {
     /**
