@@ -433,7 +433,7 @@
                         sessionStorage.setItem('noticeDetailsId',ele.obj.id);
                         sessionStorage.setItem('currentReleaseScope',parseInt(ele.obj.releaseScode));
                         /**田蓉 修改  为了兼容ie*/
-                        this.$router.push({path:'/noticeDetails'});
+                        this.$router.push({path:'/index/noticeDetails'});
                         //window.location.hash = '/noticeDetails';
                         break;
                     default:

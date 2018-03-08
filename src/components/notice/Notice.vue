@@ -103,7 +103,7 @@
                 sessionStorage.setItem('noticeDetailsId',ele.id);
                 sessionStorage.setItem('currentReleaseScope',this.currentReleaseScope);
                  /**田蓉 修改  为了兼容ie*/
-                this.$router.push({path:"/noticeDetails"});
+                this.$router.push({path:"/index/noticeDetails"});
                // window.location.hash = '/noticeDetails';
             },
             /*获取公告的接口*/

@@ -274,7 +274,7 @@
             /*点击跳转公告全屏页操作*/
             showNoticeFull(){
                  /**田蓉 修改  为了兼容ie*/
-                this.$router.push({path:'/noticeFull'});
+                this.$router.push({path:'index/noticeFull'});
                 //window.location.hash = '/noticeFull';
             }
         },

@@ -9,13 +9,19 @@
             <a class="fixed-logo" @click="logoHref"></a>
         </div>
 
-        <div class="fixed-right">
-            <!--右边的模块-->
-            <RightModel></RightModel>
-            <!--地图模块-->
+        <div class="fixed-right ccff">
+            <!--&lt;!&ndash;右边的模块&ndash;&gt;-->
+            <!--<RightModel></RightModel>-->
+            <!--&lt;!&ndash;地图模块&ndash;&gt;-->
             <FunctionMap></FunctionMap>
-            <!--代办全屏模块-->
-            <AgencyFull></AgencyFull>
+            <!--&lt;!&ndash;代办全屏模块&ndash;&gt;-->
+            <!--<AgencyFull></AgencyFull>-->
+
+            <router-view name="a"></router-view>
+            <!--<router-view name="b"></router-view>-->
+            <router-view name="c"></router-view>
+
+
         </div>
         <div class="navbar-fixed-left">
             <!--基本信息模块-->
@@ -38,10 +44,10 @@
 <script>
     import Business from '../basic/BusinessPortal.vue'
     import Loading from '../common/LoadingTpl.vue'
-    import RightModel from '../basic/RightModel.vue'
+//    import RightModel from '../basic/RightModel.vue'
     import FunctionMap from '../basic/FunctionalMap.vue'
     import Agency from '../agency/Agency.vue'
-    import AgencyFull from '../agency/AgencyFull.vue'
+//    import AgencyFull from '../agency/AgencyFull.vue'
     import PromptTpl from '../common/PromptTpl.vue'
     import editComponent from '../assembly/EditComponent.vue'
     import pwdTpl from '../basic/PasswordTpl.vue'
@@ -57,8 +63,8 @@
             Loading,
             Business,
             FunctionMap,
-            RightModel,
-            AgencyFull,
+//            RightModel,
+//            AgencyFull,
             PromptTpl,
             editComponent,
             pwdTpl

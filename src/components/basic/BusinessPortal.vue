@@ -11,21 +11,21 @@
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">
                             <!--常用的业务-->
-                            <li class="col-xs-12 col-sm-12 col-md-12 padding0">
-                                <p class="font-s12 font-c9 col-xs-12 col-sm-12 col-md-12">常用业务:</p>
-                                <div class="row common-business">
-                                    <template v-if="clicksData.length > 0">
-                                        <div v-for="(func,i) in clicksData"
-                                             class="col-xs-4 col-sm-4 col-md-4 text-center"
-                                             v-if="i < 3" @click="skipClickUrl(func.accessUrl)">
-                                            <div class="hex iconfont col icon-yemianxiangqing" :id="func.appCode"
-                                                 :move="checkMove">
-                                            </div>
-                                            <p class="font-s12 font-c6">{{func.resName}}</p>
-                                        </div>
-                                    </template>
-                                </div>
-                            </li>
+                            <!--<li class="col-xs-12 col-sm-12 col-md-12 padding0">-->
+                                <!--<p class="font-s12 font-c9 col-xs-12 col-sm-12 col-md-12">常用业务:</p>-->
+                                <!--<div class="row common-business">-->
+                                    <!--<template v-if="clicksData.length > 0">-->
+                                        <!--<div v-for="(func,i) in clicksData"-->
+                                             <!--class="col-xs-4 col-sm-4 col-md-4 text-center"-->
+                                             <!--v-if="i < 3" @click="skipClickUrl(func.accessUrl)">-->
+                                            <!--<div class="hex iconfont col icon-yemianxiangqing" :id="func.appCode"-->
+                                                 <!--:move="checkMove">-->
+                                            <!--</div>-->
+                                            <!--<p class="font-s12 font-c6">{{func.resName}}</p>-->
+                                        <!--</div>-->
+                                    <!--</template>-->
+                                <!--</div>-->
+                            <!--</li>-->
                         </ul>
                     </div>
                 </div>
