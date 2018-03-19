@@ -2,7 +2,7 @@
  * Created by tr on 2018/1/2.                                       *
  *********************************************************************/
 import * as common from '../CommonConst'
-import * as expAxios from "../modules/expAxios"
+import * as expAxios from "../common/expAxios"
 import commonMethods from '../modules/commonMethods'
 
 const state = {

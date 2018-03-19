@@ -6,7 +6,7 @@
 // import sync from '../syncData'
 
 import * as common from '../CommonConst'
-import * as expAxios from "../modules/expAxios"
+import * as expAxios from "../common/expAxios"
 import commonMethods from '../modules/commonMethods'
 
 

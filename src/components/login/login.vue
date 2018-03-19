@@ -12,7 +12,7 @@
 </template>
 
 <script>
-    import Login from  '../basic/Login.vue'
+    import Login from  './loginBasic.vue'
     import Loading from '../common/LoadingTpl.vue'
 
     export default{

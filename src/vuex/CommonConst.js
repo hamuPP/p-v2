@@ -16,6 +16,11 @@ const BASE_ADDRESSBOOK = '/addressList/'; //通讯录
 const BASE_NOTICE = '/announce/'; //公告
 //所有的后端服务的基础地址 end
 
+/*===========start 登录模块 请求接口和数据变量 start==========*/
+export const LOGIN = "login";
+export const LOGIN_DATA = "LOGIN_DATA";
+/*===========end 登录模块 请求接口和数据变量 end==========*/
+
 /*===========start 日程表变量 start==========*/
 //日程列表变量
 export const FIND_BY_DATE = "FIND_BY_DATE";

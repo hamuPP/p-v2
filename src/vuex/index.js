@@ -6,7 +6,12 @@ import loading from './common/loading'
 import homePage from  './basic/businessPortal'
 import weather from './modules/weather'
 import functionalMap from './func/functionalMap'
-import login from './basic/login'
+
+//旧门户请求方式
+// import login from './basic/login'
+//改为新版的登录
+import login from './login/login'
+
 import agency from './modules/agency'
 import news from './modules/news'
 import rightModel from './modules/rightModel'

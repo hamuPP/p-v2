@@ -9,7 +9,10 @@
             return {}
         },
         mounted () {
-            console.log('app.vue');
+            console.log('app.vue mounted');
+        },
+        created () {
+            console.log('app.vue created');
         },
         beforeDestroy () {
 
