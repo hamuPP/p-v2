@@ -139,8 +139,9 @@
              * 监听通知公告的数据
              */
             "noticeFind": function (val) {
+                debugger;
                 let that = this;
-                if (val.data.length) {
+                if (val && val.data && val.data.length) {
                     that.noticeList = val.data;
                 }
 
@@ -330,14 +331,16 @@
                     };
                 }
             });
-            let reqData = {
-                flag: 1,
-                data: {
-                    page: 1,
-                    rows: 20
-                }
-            };
-            that.$store.dispatch('findNoticeData', {reqData})
+
+//            不要通知公告的数据，就是用于轮播的那个数据
+//            let reqData = {
+//                flag: 1,
+//                data: {
+//                    page: 1,
+//                    rows: 20
+//                }
+//            };
+//            that.$store.dispatch('findNoticeData', {reqData})
         }
 
     }

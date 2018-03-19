@@ -23,6 +23,7 @@ const getters = {
 
 const actions = {
     getAddressBookDataListInFullPage({ commit }, { reqData }) {
+        debugger;
         expAxios.sendRequest({
             url: common.getUrl({ url: common.ADDRESS_BOOK }),
             data: reqData,

@@ -17,6 +17,15 @@ import store from './vuex'
 
 Vue.use(VueRouter);
 
+/*引入公用提示方法 todo 后期整理一下：是否 commonMethods 和 common都需要 --start-- */
+import commonMethods from './vuex/modules/commonMethods'
+import * as common from './vuex/CommonConst'
+
+Vue.prototype.commonMethods = new commonMethods();
+Vue.prototype.common = common;
+/*引入公用提示方法 todo 后期整理一下：是否 commonMethods 和 common都需要 --end-- */
+
+
 
 //引入公共css start
 import "./styles/bootstrap.css";
@@ -35,6 +44,8 @@ import './styles/main.less';
 const RouterConfig = {
     routes: Routers
 };
+
+
 
 const router = new VueRouter(RouterConfig);
 

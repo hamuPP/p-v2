@@ -10,22 +10,7 @@
                 <div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">
-                            <!--常用的业务-->
-                            <!--<li class="col-xs-12 col-sm-12 col-md-12 padding0">-->
-                                <!--<p class="font-s12 font-c9 col-xs-12 col-sm-12 col-md-12">常用业务:</p>-->
-                                <!--<div class="row common-business">-->
-                                    <!--<template v-if="clicksData.length > 0">-->
-                                        <!--<div v-for="(func,i) in clicksData"-->
-                                             <!--class="col-xs-4 col-sm-4 col-md-4 text-center"-->
-                                             <!--v-if="i < 3" @click="skipClickUrl(func.accessUrl)">-->
-                                            <!--<div class="hex iconfont col icon-yemianxiangqing" :id="func.appCode"-->
-                                                 <!--:move="checkMove">-->
-                                            <!--</div>-->
-                                            <!--<p class="font-s12 font-c6">{{func.resName}}</p>-->
-                                        <!--</div>-->
-                                    <!--</template>-->
-                                <!--</div>-->
-                            <!--</li>-->
+
                         </ul>
                     </div>
                 </div>
@@ -294,31 +279,31 @@
          * }}
          */
         watch: {
-            urlPath(val){// eg: val值为'/index','/index/1' 或者'/addressbookfull'类似的格式
-                debugger
+            urlPath(val){// eg: val值为'/index'--代表首页, 或者index/addressbookfullpage-代表其他全屏页面类似的格式,
                 let that = this;
-                let arrPaths = val.split("/");//['','index'],['','index','1'], ['', 'addressbookfull'] , ['','aaa', 'bbb']
-                if(arrPaths.length > 1){
-                    if(arrPaths[1] === 'index'){
-                        let type = arrPaths[2];
-                        //1と2に限り,今は undefined もある
-                        if(type && type == 2){//2：indexページがフーページから入る
-                            that.dispatchClick();
-                        }else if(type && type == 1){//1：普通のindexページ
+                let arrPaths = val.split("/");//['','index'], ['', 'addressbookfull'] , ['','aaa', 'bbb']
 
-                        }else{//undefined の場合
-                             /**田蓉 修改  为了兼容ie*/
-                            //this.$router.push({path:'/index/1'});
-
-                             /* 现在直接跳转到index，因为我想取消掉 通过1/2区分全屏非全屏的页面模式 */
-                            this.$router.push({path:'/index'});
-                            //location.hash = "/index/1";
-                        }
-
-                    }else{//フーページ
-
-                    }
-                }
+                //todo 以前的区别是首页还是全屏页面的方式，现在不是这种路由了，检测一下是否有功能问题
+//                if(arrPaths.length > 1){
+//                    if(arrPaths[1] === 'index'){
+//                        let type = arrPaths[2];
+//                        //1と2に限り,今は undefined もある
+//                        if(type && type == 2){//2：indexページがフーページから入る
+//                            that.dispatchClick();
+//                        }else if(type && type == 1){//1：普通のindexページ
+//
+//                        }else{//undefined の場合
+//                             /**田蓉 修改  为了兼容ie*/
+//                            //this.$router.push({path:'/index/1'});
+//
+//                             /* 现在直接跳转到index，因为我想取消掉 通过1/2区分全屏非全屏的页面模式 */
+//                            this.$router.push({path:'/index'});
+//                        }
+//
+//                    }else{//フーページ
+//
+//                    }
+//                }
             },
             userData(val) {
                 let me = this;

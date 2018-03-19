@@ -82,6 +82,7 @@
         watch: {
             "noticeFindData": function (val) {
                 let that = this;
+                if(!val){return;}
                 that.$nextTick(() => {
                     that.noticeList = val.data;
                     that.$set(that.paginationData, 'total', val.total);

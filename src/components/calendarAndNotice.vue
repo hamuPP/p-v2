@@ -112,6 +112,7 @@
         watch: {
             /*监听日程列表数据*/
             "taskList": function (val) {
+                if(!val){return;}
                 let that = this;
                 that.$nextTick(() => {
                     that.taskDate = val.map(item => {
