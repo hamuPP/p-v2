@@ -5,12 +5,19 @@
 <template>
     <div class="userOperation" v-if="userVisible">
         <div class="userOperation_p">
-            <i class="iconfont col icon-gonggao" v-if="noticeList.length"></i>
-             <div class="swiper-container"  v-if="noticeList.length">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide" :data-id="str.id" v-for="str in noticeList" @click="noctionEvtA(str.id)">{{str.annoTitle}}</div>
-                </div>
-            </div>
+
+            <!-- 注释掉通知公告轮播,根据最近的用户需求不要了 start by:ty 2018-03-19 -->
+            <!--<i class="iconfont col icon-gonggao" v-if="noticeList.length"></i>-->
+            <!--<div class="swiper-container" v-if="noticeList.length">-->
+                <!--<div class="swiper-wrapper">-->
+                    <!--<div class="swiper-slide" :data-id="str.id" v-for="str in noticeList" @click="noctionEvtA(str.id)">-->
+                        <!--{{str.annoTitle}}-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!-- 注释掉通知公告轮播,根据最近的用户需求不要了 start by:ty 2018-03-19 -->
+
+
             <div class="right">
                 <!-- <div>
                     <i class="iconfont col icon-xiaoxi1" @click="proTpl('news')">
@@ -20,17 +27,22 @@
                     </i>
                     <label>消息</label>
                 </div> -->
-                <div @click="proTpl('agency')">
-                    <i class="iconfont col icon-daiban"></i>
-                    <label>通讯录</label>
-                </div>
+
+
+                <!-- 不要通讯录 -->
+                <!--<div @click="proTpl('agency')">-->
+                    <!--<i class="iconfont col icon-daiban"></i>-->
+                    <!--<label class="useroperation-text">通讯录</label>-->
+                <!--</div>-->
+
+
                 <div @click="proTpl('quit')">
                     <i class="iconfont col icon-tuichu"></i>
-                    <label>退出</label>
+                    <label class="useroperation-text">退出</label>
                 </div>
                 <div @click="proTpl('users')">
                     <i class="iconfont col icon-renwujiaose"></i>
-                    <label>我</label>
+                    <label class="useroperation-text">{{userAccountZH}}</label>
                 </div>
             </div>
         </div>
@@ -42,24 +54,24 @@
             </ul>
         </div>
         <!--消息弹出框-->
-       <!--  <div class="promptTip" v-if="userPortal.news">
-            <em></em>
-            <p>消息通知 <a @click="newsDetailPage(all,$event)">查看全部</a></p>
-            <div v-if="newsNoticeData.data.length">
-                <ul class="newList">
-                    <li v-for="(nd , i) in newsNoticeData.data" :class="[{'unread': nd.selectState}]" @mouseover="overEvt(nd)" @mouseout="outEvt(nd)">
-                        <label @click="newsDetailPage(i,$event)">{{nd.title || nd.content}}</label>
-                        <span class="right-text" :style="[{'display': (nd.selectState ? 'none':'inline-block'),'color': nd.statusStr === '紧急' ? 'red' :  nd.statusStr === '重要' ? '#ff7e15':'#999'}]">{{nd.statusStr}}</span>
-                        <button class="right-text" :style="[{'display': (!nd.selectState ? 'none':'block')}]" @click="deleteIdEvt(nd.messageId)">忽略</button>
-                   </li>
-                </ul>
-                <p class="p-button"><button @click="deleteAllEvt">全部忽略</button></p>
-            </div>
-            <div class="notContent" v-else>
-                <img src="../../../../static/images/notContent.png">
-                <p>您暂时没有消息</p>
-            </div>
-        </div> -->
+        <!--  <div class="promptTip" v-if="userPortal.news">
+             <em></em>
+             <p>消息通知 <a @click="newsDetailPage(all,$event)">查看全部</a></p>
+             <div v-if="newsNoticeData.data.length">
+                 <ul class="newList">
+                     <li v-for="(nd , i) in newsNoticeData.data" :class="[{'unread': nd.selectState}]" @mouseover="overEvt(nd)" @mouseout="outEvt(nd)">
+                         <label @click="newsDetailPage(i,$event)">{{nd.title || nd.content}}</label>
+                         <span class="right-text" :style="[{'display': (nd.selectState ? 'none':'inline-block'),'color': nd.statusStr === '紧急' ? 'red' :  nd.statusStr === '重要' ? '#ff7e15':'#999'}]">{{nd.statusStr}}</span>
+                         <button class="right-text" :style="[{'display': (!nd.selectState ? 'none':'block')}]" @click="deleteIdEvt(nd.messageId)">忽略</button>
+                    </li>
+                 </ul>
+                 <p class="p-button"><button @click="deleteAllEvt">全部忽略</button></p>
+             </div>
+             <div class="notContent" v-else>
+                 <img src="../../../../static/images/notContent.png">
+                 <p>您暂时没有消息</p>
+             </div>
+         </div> -->
         <newsNotice></newsNotice>
         <!--确认信息框-->
         <ConfirmTpl :confirm="confirmVisible" @confirmEle="confirmEvt" @cancelEle="cancelEvt"></ConfirmTpl>
@@ -67,85 +79,108 @@
 
 </template>
 
-<style lang="less">
-    @import './swiper.css';
+<!-- 注释掉通知公告轮播,根据最近的用户需求不要了 start by:ty 2018-03-19 -->
+<!--<style lang="less">-->
+    <!--@import './swiper.css';-->
 
-    .swiper-container {
-        width: 60%;
-        position: absolute;
-        margin-left: 25px;
-        .swiper-slide{
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            line-height: normal;
+    <!--.swiper-container {-->
+        <!--width: 60%;-->
+        <!--position: absolute;-->
+        <!--margin-left: 25px;-->
+        <!--.swiper-slide {-->
+            <!--overflow: hidden;-->
+            <!--white-space: nowrap;-->
+            <!--text-overflow: ellipsis;-->
+            <!--line-height: normal;-->
+            <!--cursor: pointer;-->
+        <!--}-->
+    <!--}-->
+<!--</style>-->
+<!-- 注释掉通知公告轮播,根据最近的用户需求不要了 start by:ty 2018-03-19 -->
+
+<style scoped lang="less">
+    .userOperation {
+        .useroperation-text {
             cursor: pointer;
         }
     }
 </style>
 <script>
-    import Swiper from 'swiper'
+//    import Swiper from 'swiper'
     import {mapGetters} from "vuex"
     import newsNotice from '../newsNotice.vue'
     import ConfirmTpl from '../common/ConfirmTpl.vue'
-  
+
 
     export default{
         data() {
             return {
+                userAccountZH: '我',
                 confirmVisible: false, //是否展示弹出框
                 userPortal: {
                     news: false,
                     users: false
                 },
-                noticeList:[],//通知公告展示的数据
-                notContent:false,
-                newDeleteId:0 //删除的消息通知Id
+                noticeList: [],//通知公告展示的数据
+                notContent: false,
+                newDeleteId: 0 //删除的消息通知Id
             }
         },
         computed: mapGetters({
-            newsNoticeData:'noNoticeData',
+            newsNoticeData: 'noNoticeData',
             deleteAll: 'deleteAll', //全部忽略
-            deleteId:'deleteId',
+            deleteId: 'deleteId',
             userVisible: 'userVisible',
-            noticeFind:"noticeFindData"
+            noticeFind: "noticeFindData",
+            loginOutData: "loginOutData", /* 成功退出登录后返回的数据 */
         }),
         watch: {
             /**
              * 监听通知公告的数据
              */
-            "noticeFind":function(val){
+            "noticeFind": function (val) {
                 let that = this;
-                if(val.data.length){
+                if (val.data.length) {
                     that.noticeList = val.data;
                 }
-                that.$nextTick(()=>{
-                    that.noticeCarousel();
-                });
+
+                /* 注释掉通知公告轮播，根据最新用户需求不要 ty 2018-03-19 */
+                    //that.$nextTick(() => {
+                    //    that.noticeCarousel();
+                  //  });
+                /* 注释掉通知公告轮播，根据最新用户需求不要 ty 2018-03-19 */
             },
             /*监听删除Id时，返回的值*/
             deleteId(val){
                 let that = this;
-               if(val.code === 1) {
-                  that.getNotice();
-                   this.$store.dispatch('promptShow', {reqDate: '忽略成功'});
-               }else {
-                   this.$store.dispatch('promptShow', {reqDate: '忽略失败'});
-               }
+                if (val.code === 1) {
+                    that.getNotice();
+                    this.$store.dispatch('promptShow', {reqDate: '忽略成功'});
+                } else {
+                    this.$store.dispatch('promptShow', {reqDate: '忽略失败'});
+                }
             },
             /*监听忽略全部的信息*/
             deleteAll(val){
                 let that = this;
-                if(val.code === 1) {
+                if (val.code === 1) {
                     that.getNotice();
                     this.$store.dispatch('promptShow', {reqDate: '忽略成功'});
-                }else {
-                    this.$store.dispatch('promptShow', {reqDate:'忽略失败'});
+                } else {
+                    this.$store.dispatch('promptShow', {reqDate: '忽略失败'});
+                }
+            },
+
+            loginOutData(val){
+                let that = this;
+                if(val){
+                    //页面跳转到登录页面
+                    that.$router.push({path:'/login'});
                 }
             }
         },
         components: {
-            newsNotice,ConfirmTpl
+            newsNotice, ConfirmTpl
         },
         methods: {
             /**
@@ -153,6 +188,7 @@
              * @param ele 点击当前的按钮
              */
             proTpl(ele) {
+                debugger;
                 let that = this;
                 that.userPortal = {
                     news: false,
@@ -171,7 +207,7 @@
                             nodeRequire('electron').ipcRenderer.send('logout');
                         }
                         /*退出登录*/
-                        that.$store.dispatch('loginOut');
+                        that.$store.dispatch('loginOutV2');
                         /*隐藏编辑组件*/
                         that.$store.dispatch('hideEditMaskFun');
                         /*隐藏增加组件按钮*/
@@ -196,7 +232,7 @@
              *点击去消息通知页面
              * @param i
              */
-            newsDetailPage(i,e){
+            newsDetailPage(i, e){
                 e.preventDefault();
                 this.userPortal.news = false;
                 this.$store.dispatch('rightModelHide');
@@ -236,16 +272,16 @@
                 let reqData = '';
                 let allData = that.newsNoticeData.data;
                 /*获取所有要删除的ID*/
-                if(allData){
-                    allData.map((item,i)=>{
-                        if((i+1) === allData.length){
+                if (allData) {
+                    allData.map((item, i) => {
+                        if ((i + 1) === allData.length) {
                             reqData += item.messageId;
-                        }else {
+                        } else {
                             reqData += (item.messageId + ',');
                         }
                     });
                 }
-                this.$store.dispatch('deleteIdNoticeData',{reqData:{messageId:reqData}});
+                this.$store.dispatch('deleteIdNoticeData', {reqData: {messageId: reqData}});
             },
             /**
              * 根据ID忽略信息
@@ -253,7 +289,7 @@
              */
             deleteIdEvt(id){
                 this.newDeleteId = id;
-                this.$store.dispatch('deleteIdNoticeData',{reqData:{messageId:id}});
+                this.$store.dispatch('deleteIdNoticeData', {reqData: {messageId: id}});
             },
             /**获取消息通知*/
             getNotice(){
@@ -269,18 +305,18 @@
              */
             noticeCarousel(){
                 let that = this;
-                
-                let mySwiper = new Swiper('.swiper-container',{
-                    autoplay : 3000,//可选选项，自动滑动
-                    loop : true,//可选选项，开启循环
-                    preventClicks : false,
+
+                let mySwiper = new Swiper('.swiper-container', {
+                    autoplay: 3000,//可选选项，自动滑动
+                    loop: true,//可选选项，开启循环
+                    preventClicks: false,
                 });
             },
             noctionEvtA(dataId){
-                sessionStorage.setItem('noticeDetailsId',dataId);
-                sessionStorage.setItem('currentReleaseScope',1);
+                sessionStorage.setItem('noticeDetailsId', dataId);
+                sessionStorage.setItem('currentReleaseScope', 1);
                 /**田蓉 修改  为了兼容ie*/
-                this.$router.push({path:'/index/noticeDetails'});
+                this.$router.push({path: '/index/noticeDetails'});
                 //window.location.hash = '/noticeDetails';
             }
         },
@@ -300,7 +336,7 @@
                     page: 1,
                     rows: 20
                 }
-                };
+            };
             that.$store.dispatch('findNoticeData', {reqData})
         }
 

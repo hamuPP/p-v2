@@ -41,31 +41,31 @@ const routers = [
                 }
             },
             {
-                path: 'addressbookfullpage',
+                path: 'addressbookfullpage',//通讯录全屏
                 components: {
                     a:Addressbookfullpage,
                 }
             },
             {
-                path: 'noticeFull',
+                path: 'noticeFull',//通知公告全屏
                 components: {
                     a:noticeFull,
                 }
             },
             {
-                path: 'noticeManage',
+                path: 'noticeManage',//通知公告全屏-管理
                 components: {
                     a:noticeManage,
                 }
             },
             {
-                path: 'noticeDetails',
+                path: 'noticeDetails',//通知公告全屏-详情
                 components: {
                     a:NoticeDetails,
                 }
             },
             {
-                path: 'noticeEdit',
+                path: 'noticeEdit',//通知公告全屏-编辑器那个页面
                 components: {
                     a:NoticeAddAndEdit,
                 }

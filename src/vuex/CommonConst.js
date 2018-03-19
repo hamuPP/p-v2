@@ -19,6 +19,9 @@ const BASE_NOTICE = '/announce/'; //公告
 /*===========start 登录模块 请求接口和数据变量 start==========*/
 export const LOGIN = "login";
 export const LOGIN_DATA = "LOGIN_DATA";
+
+export const LOGIN_OUT = "logout";
+export const LOGIN_OUT_DATA = "LOGIN_OUT_DATA";
 /*===========end 登录模块 请求接口和数据变量 end==========*/
 
 /*===========start 日程表变量 start==========*/

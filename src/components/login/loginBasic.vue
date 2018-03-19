@@ -88,7 +88,6 @@
              * @param val 返回的数据信息
              */
             loginData(val){
-                debugger;
                 const that = this;
 
                 that.loginDataValue = val.msg;
