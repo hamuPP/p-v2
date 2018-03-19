@@ -9,6 +9,7 @@ import * as expAxios from "../common/expAxios"
 
 /* 增加  md5 --by:ty 18/3/19. */
 import Md5 from '../md5'
+import UTILS from '../Utils'
 
 const state ={
     /*登录后的信息*/
@@ -73,67 +74,25 @@ const actions = {
      */
     loginOutV2({commit}){
         let me = this;
-
         expAxios.sendRequest({
             url:common.getUrl({url:common.LOGIN_OUT}),
             data:{},
             success: data=>{
-                console.log('LOG OUT succ',data);
-
                 //登録時にsessionStorageに保存したアカウントを削除
                 sessionStorage.removeItem("loginAccount");
 
-                me.removeIframes();
+                new UTILS().removeIframes();
                 commit(common.LOGIN_OUT_DATA, {resData: data});
             },
             error:data=>{
-                console.log('error', data);
                 if(data.code === 302) {
-                    me.removeIframes();
+                    new UTILS().removeIframes();
                     setTimeout(function(){
                         location.hash = "#/login";
-                    },1000);
+                    },200);
                 }
             }
         })
-    },
-
-    /**
-     * 移除所有iframes，主要是登录时，很多软件部的旧系统登录是用的嵌入iframes方式登录的
-     * @return undefined
-     */
-    removeIframes(){
-        let ifrms = document.getElementsByTagName("iframe");
-        let copyIfrms = Object.assign({}, ifrms);
-
-        for (let i in copyIfrms) {
-            let ifr = copyIfrms[i];
-            let dataId = ifr.getAttribute("data-id");
-            let parentNode = ifr.parentNode;
-
-            if (dataId === "sc") {
-                ifr.setAttribute('src', 'http://10.176.155.47:7001/webclient/login/logout.jsp');
-                // document.body.removeChild(parentNode);
-            } else if (dataId === "wz") {
-                ifr.setAttribute('src', 'http://10.176.105.94:9002/webclient/login/logout.jsp');
-                // document.body.removeChild(parentNode);
-            } else if (dataId === "mobile") {
-                let forms = document.getElementsByTagName("form");
-                for (let k = 0; k < forms.length; k++) {
-                    let _form = forms[k];
-
-                    if (_form.getAttribute("data-id") === "mobileform") {
-                        _form.setAttribute("action", "http://10.176.105.138:8090/default/coframe/auth/login/logout.jsp");
-
-                        _form.submit();
-
-                        // document.body.removeChild(parentNode);
-                        // document.body.removeChild(_form);
-                        break;
-                    }
-                }
-            }
-        }
     }
 };
 const mutations = {

@@ -62,6 +62,7 @@ export const sendRequest = function(obj) {
 
         })
         .catch(e => {
+            debugger;
             /* 移除loading遮罩 */
             //  new commonMethods().loadingOff();
             if (e.response) {
@@ -71,7 +72,7 @@ export const sendRequest = function(obj) {
                 (obj.success && typeof obj.success === 'function') && obj.success(result);
             } else {
                 /*todo 判断接口是否有问题*/
-                // obj.error({code:303});
+                obj.error({code:302});
                 new commonMethods().showToastMsg();
             }
         });
