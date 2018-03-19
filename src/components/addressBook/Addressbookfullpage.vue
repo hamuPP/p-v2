@@ -6,7 +6,7 @@
     <div class="fullpage-main" v-if="isFullpageShow">
         <div>
             <!--用户的操作按钮-->
-            <!--<userOperation></userOperation>-->
+            <userOperation></userOperation>
         </div>
 
         <!--所有右边的数据模块-->
@@ -93,14 +93,14 @@
     </div>
 </template>
 <script>
-    import userOperation from './basic/userOperation.vue'
-    import Table from './Table.vue'
-    import Tabs from './Tabs.vue'
+    import userOperation from '../basic/userOperation.vue'
+    import Table from '../Table.vue'
+    import Tabs from '../Tabs.vue'
     import Tree from 't-vue-tree'
-    import Pagination from './Pagination.vue'
-    import AddressBookDetails from './addressBook/detailsPage.js'
+    import Pagination from '../Pagination.vue'
+    import AddressBookDetails from './detailsPage.js'
 
-    import Utils from '../vuex/Utils.js'
+    import Utils from '../../vuex/Utils.js'
 
     import {mapGetters} from "vuex"
 
@@ -344,6 +344,7 @@
              * @param {Boolean} reloadFlag リセットページネェーション検索の条件，主にbuttonをクリックした場合
              */
             getAddressListData(reloadFlag){
+                console.log('getAddressListData .vue')
                 let me = this;
                 //组装查询参数
                 if(reloadFlag){
@@ -464,6 +465,8 @@
             let me  = this;
             //get table data
             me.getAddressListData();
+
+            //get orgs tree data
             me.getEnterpriseOrgsTree();
 
         },
