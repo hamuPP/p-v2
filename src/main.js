@@ -17,6 +17,7 @@ import store from './vuex'
 /* 引入ueditor --start */
 import './vuex/editor/ueditor.config.js'
 import './vuex/editor/ueditor.all.min.js'
+// import './vuex/editor/themes'
 /* 引入ueditor --end */
 
 Vue.use(VueRouter);

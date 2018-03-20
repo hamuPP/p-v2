@@ -20,7 +20,7 @@
      * 当然，需要令此处的URL等于对应的配置。
      * window.UEDITOR_HOME_URL = "/xxxx/xxxx/";
      */
-    window.UEDITOR_HOME_URL = '/static/';
+    window.UEDITOR_HOME_URL = '/sstatic/';
     // window.UEDITOR_HOME_URL = 'static/';
     var URL = window.UEDITOR_HOME_URL || getUEBasePath();
 

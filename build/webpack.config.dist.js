@@ -10,11 +10,13 @@ module.exports = {
     devtool: 'source-map',
     entry:{
         main: './src/main',
-        vendors: ['vue', 'vue-router']
+        vendor: ['vue', 'vue-router']
     },
     output: {
+        // 输出到这个目录下
         path: path.join(__dirname, '../dist'),
         // publicPath:'/',                        // 资源路径
+        // 生成的文件名, [name] 即为entry配置中的key
         filename: '[name].[hash].js',                       // 入口js命名
         chunkFilename: '[name].[hash].chunk.js'            // 路由js命名
     },

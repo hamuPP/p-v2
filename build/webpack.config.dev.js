@@ -20,9 +20,9 @@ module.exports = {
     },
     devServer: {
         proxy: {
-            "/": { // 会把 / 开头的请求转发到 下面 targe 对应的地址
-                target: "http://10.176.156.95:10200", // 这里是实际请求的地址
-                // target: "http://192.168.0.105:10303",
+            "/": { // 会把 / 开头的请求转发到 下面 targe 对应的地址d
+                // target: "http://10.176.156.95:10200", // 这里是实际请求的地址
+                target: "http://192.168.0.105:10303",
                 // pathRewrite: {"^/api": ""}, // 请求的前缀
                 secure: false,
                 // bypass: function(req, res, proxyOptions) {
