@@ -22,6 +22,7 @@
             }
         },
         mounted() {
+            debugger;
             const _this = this;
             this.editor = UE.getEditor('editorContainer', this.config); // 初始化UE
             this.editor.addListener("ready", function () {

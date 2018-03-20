@@ -2,6 +2,7 @@
 * 日历的控制                                                         *
 * Created by sdm on 2017/6/27.                                       *
 * Modified by tr on 2017/6/27.                                       *
+* Modified by ty on 2017/6/27.    去掉jquery依赖                      *
 *********************************************************************/
 <template>
     <div class="calendar-layer" v-show="calendarShow"
@@ -59,12 +60,21 @@
         created() {
             let me = this;
             /*滚动鼠标是隐藏日历控件*/
-            $(document).on('click scroll', function (evt) {
-                let $tar = $(evt.target);
-                if ($tar.parents('div.calendar-layer').length <= 0 && !$tar.hasClass('div.calendar-layer') && !$tar.hasClass('calendar-ipt')) {
-                    if (me.calendarShow) {
-                        me.$store.dispatch('calendarHiddenEvt');
-                    }
+//            $(document).on('click scroll', function (evt) {
+//                let $tar = $(evt.target);
+//                if ($tar.parents('div.calendar-layer').length <= 0 && !$tar.hasClass('div.calendar-layer') && !$tar.hasClass('calendar-ipt')) {
+//                    if (me.calendarShow) {
+//                        me.$store.dispatch('calendarHiddenEvt');
+//                    }
+//                }
+//            });
+
+            /* 点击页面隐藏日历控件 */
+            document.addEventListener('click', function(evt){
+                let target = evt.target || evt.srcElement;
+                let datasetId = target.dataset.id;//calendar-group则表示点击的是日历输入组件,若否则表示点击的是页面其他地方，理应关闭日历弹窗
+               if ((datasetId==='calendar-group' &&  !me.calendarShow) || (!datasetId && me.calendarShow)) {
+                    me.$store.dispatch('calendarHiddenEvt');
                 }
             });
         }

@@ -14,6 +14,10 @@ import App from './app.vue';
 /* 加载vue状态管理器 */
 import store from './vuex'
 
+/* 引入ueditor --start */
+import './vuex/editor/ueditor.config.js'
+import './vuex/editor/ueditor.all.min.js'
+/* 引入ueditor --end */
 
 Vue.use(VueRouter);
 

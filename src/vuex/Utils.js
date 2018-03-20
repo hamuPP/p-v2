@@ -78,5 +78,19 @@ class Utils {
             }
         }
     }
+
+    offset(evt){
+        if(!evt){return;}
+
+        let target = evt.target || evt.srcElement;
+        let left = (evt.clientX || evt.pageX || evt.screenX) - evt.layerX;
+        let top = (evt.clientY || evt.pageY || evt.screenY) - evt.layerY;
+
+        return {
+            left: left,
+            top: top
+        }
+
+    }
 }
 export default Utils;

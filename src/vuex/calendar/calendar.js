@@ -70,6 +70,7 @@ const actions = {
      * @param calendarCallback
      */
     calendarToggleEvt({commit, dispatch}, {calendarStartTime, calendarParentId, calendarPosTop, calendarPosLeft, calendarCallback}) {
+        debugger;
         calendarPosTop = parseInt(calendarPosTop) + 40;
         if (!calendarStartTime || calendarStartTime === '') {
             let dd = new Date();

@@ -26,20 +26,27 @@
                         <Selection showType='scroll' :objProps="noticeTime" @clickEvt="noticeTimeEvt"></Selection>
                     </div>
                     <div class="notice-time">
-                        <div class="form-control calendar-ipt" id="firstTime" @click="firstTime"
+                        <div class="form-control calendar-ipt"
+                             data-id="calendar-group"
+                             id="firstTime"
+                             @click="firstTime"
                              v-model="createTime"
-                             now-id="activityST" :new-val="queryFirstObj.activityDateStart">{{
+                             now-id="activityST"
+                             :new-val="queryFirstObj.activityDateStart">{{
                             queryFirstObj.activityDateStart}}
-                            <div class="input-group-addon iconfont icon-riqi"></div>
+                            <i class="input-group-addon iconfont icon-riqi" data-id="calendar-group"></i>
                         </div>
                     </div>
                     <label class="notice-input">至</label>
                     <div class="notice-time notice-pr10">
-                        <div class="form-control calendar-ipt" id="lastTime" @click="lastTime"
+                        <div class="form-control calendar-ipt"
+                             data-id="calendar-group"
+                             id="lastTime"
+                             @click="lastTime"
                              v-model="createTime"
                              now-id="activityST" :new-val="queryLastObj.activityDateStart">{{
                             queryLastObj.activityDateStart}}
-                            <div class="input-group-addon iconfont icon-riqi"></div>
+                            <i class="input-group-addon iconfont icon-riqi" data-id="calendar-group"></i>
                         </div>
                     </div>
                     <div class="notice-input notice-keyword notice-pr10">
@@ -81,6 +88,7 @@
     import Table from '../plugins/NoticeTable.vue'
     import Pagination from '../Pagination.vue'
     import ConfirmTpl from '../common/ConfirmTpl.vue'
+    import UTILS from '../../vuex/Utils'
 
     import {mapGetters} from "vuex"
 
@@ -311,13 +319,25 @@
              * @param evt
              */
             firstTime(evt){
+                let Utils = new UTILS();
                 let that = this;
-                let _target = document.getElementById(evt.target.id);
-                let scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
-                let calendarPosTop = $(evt.target).offset().top - scrollTop - 10;
-                let calendarPosLeft = $(evt.target).offset().left;
-                let calendarParentId = _target.getAttribute('now-id');
-                let calendarStartTime = _target.getAttribute('now-val');
+                let target = evt.target || evt.srcElement;
+//                let parentNode = target.parentNode;
+//                let scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+
+                let offsetPosition = Utils.offset(evt);
+
+                let calendarPosLeft = offsetPosition.left;
+                let calendarPosTop = offsetPosition.top - 10;
+                //如果点击的是小icon，left 和 top 位置减少一些
+                if(target.tagName.toUpperCase() === 'I'){
+                    calendarPosLeft -= 97;
+                    calendarPosTop -= 4;
+                }
+
+                let calendarParentId = target.getAttribute('now-id');
+                let calendarStartTime = target.getAttribute('now-val');
+
                 let calendarCallback = function (date) {
                     if (calendarParentId === 'activityST') {
                         that.searchObj.startTime = date;
@@ -337,13 +357,29 @@
              * @param evt
              */
             lastTime(evt){
+                debugger;
+                let Utils = new UTILS();
                 let that = this;
                 let _target = document.getElementById(evt.target.id);
+                let target = evt.target || evt.srcElement;
+                let parentNode = target.parentNode;
+
+                let offsetPosition = Utils.offset(evt);
+
                 let scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
-                let calendarPosTop = $(evt.target).offset().top - scrollTop - 10;
-                let calendarPosLeft = $(evt.target).offset().left;
-                let calendarParentId = _target.getAttribute('now-id');
-                let calendarStartTime = _target.getAttribute('now-val');
+//                let calendarPosTop = $(evt.target).offset().top - scrollTop - 10;
+//                let calendarPosLeft = $(evt.target).offset().left;
+
+                let calendarPosLeft = offsetPosition.left;
+                let calendarPosTop = offsetPosition.top - 10;
+                //如果点击的是小icon，left 和 top 位置减少一些
+                if(target.tagName.toUpperCase() === 'I'){
+                    calendarPosLeft -= 97;
+                    calendarPosTop -= 4;
+                }
+
+                let calendarParentId = target.getAttribute('now-id');
+                let calendarStartTime = target.getAttribute('now-val');
                 let calendarCallback = function (date) {
                     if (calendarParentId === 'activityST') {
                         that.searchObj.endTime = date;

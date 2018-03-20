@@ -326,7 +326,6 @@
             jumpHomePage(){
                  /**田蓉 修改  为了兼容ie*/
                 this.$router.push({path:'/index'});
-                //window.location.hash = "/index/1";
             },
 
 

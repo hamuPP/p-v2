@@ -960,7 +960,6 @@
                 if(path && path === '/index/2'){
                     /**田蓉 修改  为了兼容ie*/
                     this.$router.push({path:'/index/1'});
-                    //location.hash = '#/index/1';
                 }
             }
         },

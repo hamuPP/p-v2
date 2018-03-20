@@ -139,7 +139,6 @@
              * 监听通知公告的数据
              */
             "noticeFind": function (val) {
-                debugger;
                 let that = this;
                 if (val && val.data && val.data.length) {
                     that.noticeList = val.data;
@@ -189,7 +188,6 @@
              * @param ele 点击当前的按钮
              */
             proTpl(ele) {
-                debugger;
                 let that = this;
                 that.userPortal = {
                     news: false,
