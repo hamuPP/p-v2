@@ -45,3 +45,7 @@
 1. 更改页面的router-view结构
 
 2.更改全屏页面的路由配置，以前是index/1代表首页，index/sdfsdfsdf代表其他全屏页面，现在取消，直接用index代表首页
+
+## 备注
+
+1. static 里面的/lang和/themes全是ueditor的相关资源
