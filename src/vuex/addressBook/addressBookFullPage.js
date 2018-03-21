@@ -23,7 +23,6 @@ const getters = {
 
 const actions = {
     getAddressBookDataListInFullPage({ commit }, { reqData }) {
-        debugger;
         expAxios.sendRequest({
             url: common.getUrl({ url: common.ADDRESS_BOOK }),
             data: reqData,
@@ -33,7 +32,6 @@ const actions = {
 
                 if (data && data.meta && data.meta.code * 1 === 1) {
                     newList = (data.data && data.data.rows && data.data.rows.length) ? data.data.rows : [];
-                    // paginationData = (data.data && data.data.page && data.data.page.totalRows) ? (data.data.page.totalRows)*1 : 0;
                     paginationData = (data.data && data.data.page && data.data.page.totalRows) ? {total:(data.data.page.totalRows)*1} : {};
                 } else if (data === 'ERROR') {
                     window.location.href = "#/login";

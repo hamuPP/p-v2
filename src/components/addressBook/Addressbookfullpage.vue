@@ -108,7 +108,6 @@
         name:'Addressbookfullpage.vue',
         data(){
             return {
-                enterpriseOrgsTreeDataRawAndUserDataCount:0,
                 isFullpageShow:true,
                 treeParams:{
                     isCheck:false
@@ -229,10 +228,6 @@
 
             },
 
-            pageNumber(val){
-                let me = this;
-            },
-
             /* 通讯录列表数据 */
             addressBookDataFullPage(val){
                 let me = this;
@@ -269,22 +264,10 @@
                 (me.paginationData._reloadFlag)++;
             },
 
-            enterpriseOrgsTreeDataRawAndUserDataCount(val){
-                let me = this;
-
-                console.log('count', val)
-
-                //F12クリック時−２、indexからフーページに入る時-３
-                //todo 以下为本地数据测试，暂时别删，测试功能用
-                if(val > 1){
-                    me.realData2();
-                }
-            },
-
             userData(val){
                 let me = this;
                 console.log('userData', val);
-                (me.enterpriseOrgsTreeDataRawAndUserDataCount)++;
+
             },
 
             /**
@@ -293,7 +276,60 @@
              */
             enterpriseOrgsTreeDataRaw(val){
                 let me = this;
-                (me.enterpriseOrgsTreeDataRawAndUserDataCount)++;
+
+                /* 拷贝全量树和父节点树的数据 */
+                let copiedParentsTree = me._getCopiedTree(val[1]);
+                let copiedAllTree = me._getCopiedTree(val[0]);
+
+                /**
+                 * transform data into target(Tree data) formats
+                 * @param arr raw data
+                 * @param  code [String] codeにあってるノードを選択状態と展開状態にする
+                 * @param  parentsObj [Object]
+                 * @return []
+                 */
+                let fn = function(arr, {code, parentsObj}){
+                    let resultArr = arr.map(it => {
+                        let _children = [];
+
+                        if(it.children && it.children.length){
+                            _children = fn(it.children,{code:code, parentsObj:parentsObj});
+                        }
+
+
+                        return Object.assign(it, {
+                            title: it.orgName,
+                            id: it.orgCode,
+                            expanded: parentsObj[it.orgCode] || false,
+                            selected: code ? it.orgCode === code : false,
+                            children: _children
+                        });
+
+                    });
+
+                    return resultArr;
+                };
+                //获得所有父节点的orgCode;
+                let parentsOrgCodes = {};
+                let orgCode = me.userData.orgCode;
+                let parentsTreeRaw = copiedParentsTree;
+                let getP = (nodes) =>{
+                    for(let m = 0, mlen = nodes.length;m<mlen;m++){
+                        let o = nodes[m];
+
+                        parentsOrgCodes[o.orgCode] = true;
+                        if(o.children && o.children.length){
+                            getP(o.children);
+                        }
+                    }
+                };
+
+                getP(parentsTreeRaw);
+
+                me.treeObj = fn(copiedAllTree, {
+                    code:orgCode,
+                    parentsObj:parentsOrgCodes
+                });
             }
         },
 
@@ -343,7 +379,6 @@
              * @param {Boolean} reloadFlag リセットページネェーション検索の条件，主にbuttonをクリックした場合
              */
             getAddressListData(reloadFlag){
-                console.log('getAddressListData .vue')
                 let me = this;
                 //组装查询参数
                 if(reloadFlag){
@@ -370,7 +405,6 @@
              * @returns undefined
              */
             getEnterpriseOrgsTree(){
-                console.log('getEnterpriseOrgsTree .vue')
                 let me = this;
                 me.$store.dispatch('getEnterpriseOrgsTreeDataInFullPage',{'reqData': {}});
 
@@ -386,91 +420,34 @@
                 }
             },
 
-            //todo 公共方法抽出 方法需要改进，注意引用
-            _getFlatTree (metaData) {
-                let keyCounter = 0;
-                const flatTree = [];
-
-                function flattenChildren(node, parent) {
-                    node.nodeKey = keyCounter++;
-                    node.testMe = 233;
-                    flatTree[node.nodeKey] = {
-                        node: node,
-                        nodeKey: node.nodeKey,
-                    };
-                    if (typeof parent != 'undefined') {
-                        flatTree[node.nodeKey].parent = parent.nodeKey;
-                        flatTree[parent.nodeKey].children.push(node.nodeKey);
-                    }
-
-                    if (node.children) {
-                        flatTree[node.nodeKey].children = [];
-                        node.children.forEach(child => flattenChildren(child, node));
-                    }
-                }
-
-                metaData.forEach(rootNode => {
-                    flattenChildren(rootNode);
-                });
-                return flatTree;
-            },
-
             onToggleHandle(val){
                 console.log('onToggleHandle', val);
             },
-            realData2(){
-                let me = this;
+            /**
+             * 拷贝传入数据的副本
+             * @param data
+             * @returns {Array}
+             * @private
+             */
+            _getCopiedTree(data){
+                let result = [];
 
-                /**
-                 * transform data into target(Tree data) formats
-                 * @param arr raw data
-                 * @param  code [String] codeにあってるノードを選択状態と展開状態にする
-                 * @param  parentsStr [String]
-                 * @return []
-                 */
-                let fn = function(arr, {code, parentsStr}){
-                    let resultArr = arr.map(it => {
-                        let _children = [];
+                let formatedData = JSON.parse(JSON.stringify(data));
+                result.push(formatedData);
 
-                        if(it.children && it.children.length){
-                            _children = fn(it.children,{code:code, parentsStr:parentsStr});
-                        }
-
-
-                        return Object.assign(it, {
-                            title: it.orgName,
-                            id: it.orgCode,
-//                            selected: code ? it.orgCode === code : false,
-                            children: _children
-                        });
-
-                    });
-
-                    return resultArr;
-                };
-                let result;
-
-                let orgCode = me.userData.orgCode;
-                result = fn(me.enterpriseOrgsTreeDataRaw, {
-                    code:orgCode
-                });
-
-
-                me.treeObj = result;
+                return result;
             }
         },
 
         created() {
             let me  = this;
+
+            me.pageCreatedFlag = false;
             //get table data
             me.getAddressListData();
 
             //get orgs tree data
             me.getEnterpriseOrgsTree();
-
-        },
-        mounted() {
-            let me = this;
 
         }
     }
