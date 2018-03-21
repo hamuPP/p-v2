@@ -353,9 +353,6 @@
                     }
                 });
             },
-            hideFullpage(flag){
-                this.isFullpageShow = !flag;
-            },
             /**
              * jump to homepage url
              */
