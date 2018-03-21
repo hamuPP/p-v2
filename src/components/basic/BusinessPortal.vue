@@ -305,6 +305,17 @@
 //                    }
 //                }
             },
+
+            '$route':function(val){
+                let that = this;
+
+                let query = val.query;
+                //需要打开组件定制
+                let editingComponent = query.componentCuz;
+                if(editingComponent){
+                    that.dispatchClick();
+                }
+            },
             userData(val) {
                 let me = this;
                 me.$store.dispatch('loadingShow');
@@ -640,17 +651,8 @@
                 document.getElementsByClassName('navbar')[0].style = " display: block;";
                 this.isShow = false;
                 /*判断是功能地图，还是定制业务*/
-                if (ele === 'func') {//点击了按钮：组件定制 或 定制完成
-                    /*首先判断是否为全屏页面，是则跳到首页*/
-                    let isFullPage = that.isFullpage();
-
-                    if(isFullPage){
-                        this.jumpToIndexPage();
-                        return;
-                    }else{
-
-                    }
-
+                if (ele === 'func') {//点击了按钮：组件定制 或 取消定制
+                    /*首先判断是否为首页，若非首页，点击'组件定制'则跳到首页，因为组件定制功能是定制主页的功能 */
                     this.mapValue = {
                         isCls: false,
                         cls: "icon-yewudingzhi",
@@ -677,6 +679,14 @@
                         /*显示全屏页面(若为全屏页面)*/
                         this.hideFullpage(false);
                         return;
+                    }else{
+                        let isHomepage = that.isHomepage();
+                        if(!isHomepage){
+                            this.jumpToIndexPage();
+                            return;
+                        }else{
+
+                        }
                     }
                     /*显示功能地图的数据*/
                     if (this.mapShowBtu) {
@@ -697,7 +707,8 @@
                         this.mapShowBtu = true;
                         this.$store.dispatch('hideEditMaskFun');
                         this.$store.dispatch('hideAddComponentFun');
-                        this._resetIndexPageHash();
+//                        this._resetIndexPageHash();
+                        this._clearRouteQueryParams();
 
                     }
                 } else {//custom
@@ -895,6 +906,7 @@
              * 隐藏全屏页面(若当前确实为全屏页面,全屏页面的模块：通讯录和通知公告)
              */
             hideFullpage(flag){
+                debugger;
                 let that = this;
                 let originalPath = that.$route.path;//'/index','/aaa/bbb'
 
@@ -921,11 +933,20 @@
              */
             isFullpage(){
                 let that = this;
-                let originalPath = that.$route.path; // '/index'、'/aaa/bb'此类的格式
+                let originalPath = that.$route.path; // '/index'、'/index/addressbookfullpage'此类的格式
                 if(!originalPath){return;}
-                let path = originalPath.split("/")[1];
-                let isFullpage = !(path == 'login'|| path == 'index');
-                return isFullpage;
+                let path = originalPath.split("/")[2];
+//                let isFullpage = !(path == 'login'|| path == 'index');
+                return originalPath.split("/")[2];
+            },
+            /**
+             * 判断当前网页是否为首页
+             */
+            isHomepage(){
+                let that = this;
+                let originalPath = that.$route.path; // '/index'、'/index/addressbookfullpage'此类的格式
+                if(!originalPath){return false;}
+                return originalPath === '/index';
             },
 
             jumpToIndexPage(){
@@ -933,11 +954,14 @@
                 let isFullpage = that.isFullpage();
 
                 if(isFullpage){
+                debugger;
                     let parent = that.$parent;
-                    let name = parent.$options.name;
-                    if(name === 'index.vue'){
+                debugger;
+
+                let name = parent.$options.name;
+                    if(name === 'HomePage.vue'){
                         /**田蓉 修改  为了兼容ie*/
-                        this.$router.push({path:'/index/2'});
+                        this.$router.push({path:'/index?componentCuz=1'});
                         //window.location.hash = "/index/2";
                     }
                 }
@@ -961,6 +985,18 @@
                     /**田蓉 修改  为了兼容ie*/
                     this.$router.push({path:'/index/1'});
                 }
+            },
+
+            /**
+             * 清空路由里的查询参数
+             * @private
+             * @return undefined
+             */
+            _clearRouteQueryParams(){
+                console.log('_clearRouteQueryParams');
+                let that = this;
+
+                that.$router.push({path:'/index'});
             }
         },
         created(){

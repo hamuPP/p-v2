@@ -2657,11 +2657,12 @@ ul.tree-list {
     margin: 6px 0 0 28px;
     background: url('../images/daduheLogo.png') no-repeat;
 }
-.fixed .fixed-logo{
-    position: fixed;
-    top:20px;
-    bottom: 10px;
-    width: 30%;
+.fixed-header .fixed-logo{
+	position: fixed;
+	top:5px;
+	height: 25px;
+	width: 30%;
+	cursor: pointer;
 }
 
 .navbar-fixed-left {

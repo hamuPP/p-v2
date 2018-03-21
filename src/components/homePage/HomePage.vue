@@ -53,6 +53,7 @@
 
     import {mapGetters} from "vuex"
     export default{
+        name:'HomePage.vue',
         computed: mapGetters({
             /*是否弹出编辑组件弹框*/
             showEditComponent:'showEditComponent'
@@ -69,7 +70,7 @@
         },
         methods: {
             logoHref(){
-                this.$router.push({path:"/index/1"});
+                this.$router.push({path:"/index"});
             },
 
             getUserData(){
