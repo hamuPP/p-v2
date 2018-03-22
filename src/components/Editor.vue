@@ -22,11 +22,14 @@
             }
         },
         mounted() {
-            debugger;
-            const _this = this;
+            const that = this;
             this.editor = UE.getEditor('editorContainer', this.config); // 初始化UE
             this.editor.addListener("ready", function () {
-                _this.editor.setContent(_this.defaultMsg); // 确保UE加载完成后，放入内容。
+                that.editor.setContent(that.defaultMsg); // 确保UE加载完成后，放入内容。
+            });
+
+            that.$nextTick( ()=>{
+                console.log('$nextTick');
             });
         },
         methods: {
@@ -35,7 +38,7 @@
             }
         },
         destroyed() {
-//            this.editor.destroy();
+            this.editor && this.editor.destroy();
         }
     }
 </script>

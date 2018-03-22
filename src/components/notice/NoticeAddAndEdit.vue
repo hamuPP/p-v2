@@ -37,24 +37,28 @@
                         <div>
                             <label class="content-label"><i>*</i>有效日期:</label>
                             <div class="notice-time">
-                                <div class="form-control calendar-ipt" ref="firstTime"
+                                <div class="form-control calendar-ipt"
+                                     ref="firstTime"
+                                     data-id="calendar-group"
                                      @click="firstTime"
                                      v-model="createTime"
                                      now-id="activityST"
-                                     :new-val="curObj.effectiveStartTime">
+                                     :new-val="curObj.effectiveStartTime" >
                                     {{curObj.effectiveStartTime}}
-                                    <div class="input-group-addon iconfont icon-riqi" @click="firstTime"></div>
+                                    <i class="input-group-addon iconfont icon-riqi"  data-id="calendar-group" ></i>
                                 </div>
                             </div>
                             <span class="notice-input">至</span>
                             <div class="notice-time notice-pr10">
-                                <div class="form-control calendar-ipt" ref="lastTime"
+                                <div class="form-control calendar-ipt"
+                                     ref="lastTime"
+                                     data-id="calendar-group"
                                      @click="lastTime"
                                      v-model="createTime"
                                      now-id="activityST"
                                      :new-val="curObj.effectiveEndTime">
                                     {{curObj.effectiveEndTime}}
-                                    <div class="input-group-addon iconfont icon-riqi"></div>
+                                    <div class="input-group-addon iconfont icon-riqi" data-id="calendar-group"></div>
                                 </div>
                             </div>
                         </div>
@@ -169,7 +173,7 @@
     import Tabs from '../Tabs.vue'
     import Tree from '../plugins/Tree.vue'
     import UE from '../Editor.vue'
-    import Utils from '../../vuex/Utils.js'
+    import UTILS from '../../vuex/Utils.js'
 
     import {mapGetters} from "vuex"
 
@@ -269,7 +273,7 @@
                 that.$nextTick(() => {
                     that.curTree = [];
                     let newOrgCodes = [];
-                    let isEmptyObj = new Utils().isEmptyObj(that.noticeIdFindData);//ハジメはナイデス
+                    let isEmptyObj = new UTILS().isEmptyObj(that.noticeIdFindData);//ハジメはナイデス
 
                     if (that.noticeIdFindData && !isEmptyObj) {
                         newOrgCodes = (that.noticeIdFindData.departmentOrgCodes && that.noticeIdFindData.departmentOrgCodes.length) ?
@@ -377,12 +381,26 @@
              */
             firstTime(evt){
                 let that = this;
-                let _target = that.$refs.firstTime;
-                let scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
-                let calendarPosTop = $(evt.target).offset().top - scrollTop - 10;
-                let calendarPosLeft = $(evt.target).offset().left;
-                let calendarParentId = _target.getAttribute('now-id');
-                let calendarStartTime = _target.getAttribute('now-val');
+                let Utils = new UTILS();
+//                let _target = that.$refs.firstTime;
+//                let scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+//                let calendarPosTop = $(evt.target).offset().top - scrollTop - 10;
+//                let calendarPosLeft = $(evt.target).offset().left;
+
+                let target = evt.target || evt.srcElement;
+                let calendarParentId = target.getAttribute('now-id');
+                let calendarStartTime = target.getAttribute('now-val');
+                let offsetPosition = Utils.offset(evt);
+                let calendarPosLeft = offsetPosition.left;
+                let calendarPosTop = offsetPosition.top - 10;
+
+                //如果点击的是小icon，left 和 top 位置减少一些
+                if(target.tagName.toUpperCase() === 'I'){
+                    calendarPosLeft -= 97;
+                    calendarPosTop -= 4;
+                }
+
+
                 let calendarCallback = function (date) {
                     if (calendarParentId === 'activityST') {
                         that.curObj.effectiveStartTime = date;
@@ -402,12 +420,23 @@
              */
             lastTime(evt){
                 let that = this;
-                let _target = that.$refs.lastTime;
-                let scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
-                let calendarPosTop = $(evt.target).offset().top - scrollTop - 10;
-                let calendarPosLeft = $(evt.target).offset().left;
-                let calendarParentId = _target.getAttribute('now-id');
-                let calendarStartTime = _target.getAttribute('now-val');
+                let Utils = new UTILS();
+//                let _target = that.$refs.lastTime;
+//                let scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+//                let calendarPosTop = $(evt.target).offset().top - scrollTop - 10;
+//                let calendarPosLeft = $(evt.target).offset().left;
+
+                let target = evt.target || evt.srcElement;
+                let offsetPosition = Utils.offset(evt);
+                let calendarPosLeft = offsetPosition.left;
+                let calendarPosTop = offsetPosition.top - 10;
+                //如果点击的是小icon，left 和 top 位置减少一些
+                if(target.tagName.toUpperCase() === 'I'){
+                    calendarPosLeft -= 97;
+                    calendarPosTop -= 4;
+                }
+                let calendarParentId = target.getAttribute('now-id');
+                let calendarStartTime = target.getAttribute('now-val');
                 let calendarCallback = function (date) {
                     if (calendarParentId === 'activityST') {
                         that.curObj.effectiveEndTime = date;
