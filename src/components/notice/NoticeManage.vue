@@ -357,18 +357,13 @@
              * @param evt
              */
             lastTime(evt){
-                debugger;
                 let Utils = new UTILS();
                 let that = this;
-                let _target = document.getElementById(evt.target.id);
                 let target = evt.target || evt.srcElement;
-                let parentNode = target.parentNode;
 
                 let offsetPosition = Utils.offset(evt);
 
                 let scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
-//                let calendarPosTop = $(evt.target).offset().top - scrollTop - 10;
-//                let calendarPosLeft = $(evt.target).offset().left;
 
                 let calendarPosLeft = offsetPosition.left;
                 let calendarPosTop = offsetPosition.top - 10;

@@ -55,9 +55,9 @@
                 this.$router.push({path:"/index/noticeManage"});
                 //window.location.hash = '/noticeManage'
             },
-          closeFull(){
-            window.history.go(-1);
-          }
+            closeFull(){
+                window.history.go(-1);
+            }
         },
         mounted() {
             let that = this;

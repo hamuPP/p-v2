@@ -37,20 +37,18 @@
                         <div>
                             <label class="content-label"><i>*</i>有效日期:</label>
                             <div class="notice-time">
-                                <div class="form-control calendar-ipt"
-                                     id="firstTime"
+                                <div class="form-control calendar-ipt" ref="firstTime"
                                      @click="firstTime"
                                      v-model="createTime"
                                      now-id="activityST"
                                      :new-val="curObj.effectiveStartTime">
                                     {{curObj.effectiveStartTime}}
-                                    <div class="input-group-addon iconfont icon-riqi"></div>
+                                    <div class="input-group-addon iconfont icon-riqi" @click="firstTime"></div>
                                 </div>
                             </div>
                             <span class="notice-input">至</span>
                             <div class="notice-time notice-pr10">
-                                <div class="form-control calendar-ipt"
-                                     id="lastTime"
+                                <div class="form-control calendar-ipt" ref="lastTime"
                                      @click="lastTime"
                                      v-model="createTime"
                                      now-id="activityST"
@@ -247,7 +245,8 @@
                     releaseScode: 1,
                     orgCode: '',
                     effectiveStartTime:'',
-                    effectiveEndTime:''
+                    effectiveEndTime:'',
+                    endTopType:1
                 }, //当前的数据
                 //editor conf options
                 editorConfig: {
@@ -378,7 +377,7 @@
              */
             firstTime(evt){
                 let that = this;
-                let _target = document.getElementById(evt.target.id);
+                let _target = that.$refs.firstTime;
                 let scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
                 let calendarPosTop = $(evt.target).offset().top - scrollTop - 10;
                 let calendarPosLeft = $(evt.target).offset().left;
@@ -403,7 +402,7 @@
              */
             lastTime(evt){
                 let that = this;
-                let _target = document.getElementById(evt.target.id);
+                let _target = that.$refs.lastTime;
                 let scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
                 let calendarPosTop = $(evt.target).offset().top - scrollTop - 10;
                 let calendarPosLeft = $(evt.target).offset().left;
@@ -565,7 +564,13 @@
                 delete me.curObj.companyOrgCodes;
                 delete me.curObj.departmentOrgCodes;
 
-                me.$store.dispatch('saveNotice', {reqData: me.curObj});
+                if(!me.curObj.annoTitle){
+                    me.commonMethods.showToastMsg({text: '公告标题不能为空！', priority: 'error'});
+                }else if(!me.curObj.orgCode){
+                    me.commonMethods.showToastMsg({text: '发布范围不能为空！', priority: 'error'});
+                }else{
+                    me.$store.dispatch('saveNotice', {reqData: me.curObj});
+                }
             },
 
             upload(){
@@ -636,6 +641,7 @@
                     isRelease: 2,
                     releaseScode: 1,
                     orgCode: '',
+                    endTopType:1,
                     effectiveStartTime: that.getDate(),
                     effectiveEndTime: that.getDate()
                 };
