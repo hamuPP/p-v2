@@ -16,7 +16,7 @@
                             <i class="iconfont icon-xinjianricheng"></i>
                             <div class="task-title">
                                 <p>新建任务事件</p>
-                                <p>创建一条选定时间日程</p>
+                                <p style="display: none;">创建一条选定时间日程</p>
                             </div>
                         </div>
                         <ul class="task-list" v-if="!isShow">

@@ -14,7 +14,7 @@
                     height="100%"
             ></iframe>
         </div>
-        </div>
+    </div>
 </template>
 <script>
     import userOperation from './basic/userOperation.vue'
@@ -25,7 +25,7 @@
         },
         methods: {
             close(){
-               this.$router.push({path:'/index/1'});
+                this.$router.push({path:'/index/1'});
             }
         },
         watch:{
