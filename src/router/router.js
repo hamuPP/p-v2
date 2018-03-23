@@ -1,7 +1,3 @@
-// import basicDemoAndApi from './views/pages/basicDemoAndApi.vue'
-// import reloadTreeData from './views/pages/reloadTreeData.vue'
-
-
 import loginPage from '../components/login/login.vue'
 import HomePage from '../components/homePage/homePage.vue'
 import RightModel from '../components/basic/RightModel.vue'
@@ -12,6 +8,7 @@ import noticeFull from '../components/notice/NoticeFull.vue'
 import noticeManage from '../components/notice/NoticeManage.vue'
 import NoticeDetails from '../components/notice/NoticeDetails.vue'
 import NoticeAddAndEdit from '../components/notice/NoticeAddAndEdit.vue'
+import SmallTools from '../components/smallTools.vue'
 
 const routers = [
     {
@@ -68,6 +65,12 @@ const routers = [
                 path: 'noticeEdit',//通知公告全屏-编辑器那个页面
                 components: {
                     a:NoticeAddAndEdit,
+                }
+            },
+            {
+                path: 'smallTools',//工具集
+                components: {
+                    a:SmallTools,
                 }
             },
         ]

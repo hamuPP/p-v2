@@ -49,6 +49,7 @@
     import AddressBookDetails from './addressBook/detailsPage.js'
 
     export default{
+        name:'addressbookInHomepage',
         data(){
             return {
                 isTableLoading:false,
@@ -200,8 +201,7 @@
 
             showAddressbookFullpage(){
                 /**田蓉 修改  为了兼容ie*/
-                this.$router.push({path:'/index/addressbookfullpage'})
-               // window.location.hash = '/addressbookfullpage';
+                this.$router.push({path:'/index/addressbookfullpage'});
             },
             /**
              * Table单行点击事件

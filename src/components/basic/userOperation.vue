@@ -34,7 +34,12 @@
                     <!--<i class="iconfont col icon-daiban"></i>-->
                     <!--<label class="useroperation-text">通讯录</label>-->
                 <!--</div>-->
-
+                <!-- 加入'小工具' by:ty start -->
+                <div @click="proTpl('favorites')">
+                    <i class="iconfont col icon-fuwurenwu"></i>
+                    <label>工具集</label>
+                </div>
+                <!-- 加入'小工具' by:ty end -->
 
                 <div @click="proTpl('quit')">
                     <i class="iconfont col icon-tuichu"></i>
@@ -110,6 +115,7 @@
     import {mapGetters} from "vuex"
     import newsNotice from '../newsNotice.vue'
     import ConfirmTpl from '../common/ConfirmTpl.vue'
+    import FavoritesToolsModal from '../favoritesTools/modalPage.js'
 
 
     export default{
@@ -180,7 +186,7 @@
             }
         },
         components: {
-            newsNotice, ConfirmTpl
+            newsNotice, ConfirmTpl,FavoritesToolsModal
         },
         methods: {
             /**
@@ -217,6 +223,11 @@
                         that.$store.dispatch('rightModelShow');
                         break;
                     case 'agency':
+                        break;
+                    case 'favorites':
+                        that.showFavoritesModal(event|| window.event);
+                        break;
+                    default:
                         break;
                 }
             },
@@ -317,6 +328,77 @@
                 /**田蓉 修改  为了兼容ie*/
                 this.$router.push({path: '/index/noticeDetails'});
                 //window.location.hash = '/noticeDetails';
+            },
+
+            /**
+             * 显示常用工具集
+             * @author ty
+             * @dates 2018年03月12日10:51:38
+             */
+            showFavoritesModal(evt){
+                let that = this;
+
+                //打开弹窗
+                let metaData = [
+                    {
+                        title: '天气预报',
+                        href:'http://www.weather.com.cn/',
+                        icon:'icon-tianqiyubao'
+                    },
+                    {
+                        title: '航空时刻表',
+                        href:'http://flight.qunar.com/status/alphlet_order.jsp',
+                        icon:'icon-hangkongshikebiao'
+                    },
+                    {
+                        title: '列车时刻表',
+                        href:'http://train.qunar.com/chezhan/',
+                        icon:'icon-liecheshikebiao'
+                    },
+                    {
+                        title: '世界时间',
+                        href:'http://tech.sina.com.cn/down/baishitong/shijian.html',
+                        icon:'icon-shijieshijian'
+                    },
+                    {
+                        title: '邮编区号',
+                        href:'http://www.ip138.com/post/',
+                        icon:'icon-youbianquhao'
+                    },
+                    {
+                        title: '万年历',
+                        href:'http://tools.2345.com/rili.htm',
+                        icon:'icon-wannianli'
+                    }
+                ];
+                //基点元素找到最外层的div
+
+//                console.log(evt);
+
+                let basePointElement = evt.target || evt.srcElement;
+
+//                console.log(basePointElement);
+//                console.log(basePointElement.tagName);
+
+                let p = (basePointElement.tagName.toLowerCase() == 'i' || basePointElement.tagName.toLowerCase() == 'label')?
+                    basePointElement.parentNode : basePointElement;
+
+                FavoritesToolsModal.show({
+                    basePointDom:p,
+                    data:metaData,
+                    closeEvt:function(data){
+
+                        if(1){
+                            //todo 关闭后是否干点啥？
+
+                        }
+                    },
+                    onClickItem:function(href){
+                        console.log(arguments);
+//                        that.$router.replace({ path: '/index/smallTools'});
+                        that.$router.push({ path: '/index/smallTools', query: { href: href }});
+                    }
+                });
             }
         },
         created() {
@@ -339,6 +421,8 @@
 //                }
 //            };
 //            that.$store.dispatch('findNoticeData', {reqData})
+
+            FavoritesToolsModal && FavoritesToolsModal.destroy({});
         }
 
     }
