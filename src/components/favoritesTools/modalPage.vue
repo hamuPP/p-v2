@@ -60,7 +60,6 @@
         methods: {
 
             add(opts){
-                debugger;
                 let me = this;
                 me.show = true;
                 let idx = 0;

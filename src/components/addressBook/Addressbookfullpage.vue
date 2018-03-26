@@ -439,7 +439,6 @@
         created() {
             let me  = this;
 
-            me.pageCreatedFlag = false;
             //get table data
             me.getAddressListData();
 

@@ -37,7 +37,7 @@
                 <!-- 加入'小工具' by:ty start -->
                 <div @click="proTpl('favorites')">
                     <i class="iconfont col icon-fuwurenwu"></i>
-                    <label>工具集</label>
+                    <label class="useroperation-text">工具集</label>
                 </div>
                 <!-- 加入'小工具' by:ty end -->
 

@@ -50,7 +50,6 @@ function getInstance() {
             //TODO
             return {
                 show(opts){
-                    debugger;
                     _instance.add(opts);
                 },
 
