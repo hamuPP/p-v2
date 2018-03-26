@@ -137,14 +137,13 @@
                                         <span class="input-group-addon iconfont icon-bianjiziliao font-s12"></span>
                                     </div>
                                     <ul v-if="currentChildList">
-                                        <li v-for="fun in currentChildList.children" v-if="fun.activeStatus === 0"
-                                            :title="fun.resName"
+                                        <li v-for="fun in currentChildList.children" v-if="fun.activeStatus === 0" :title="fun.resName"
                                             class="col-xs-4 col-sm-4 col-md-4 text-center height-72 function list-complete-item dargDiv margin-top-5"
                                             @dragstart='drag(fun,$event)'
                                             @click="skipUrl(fun)">
                                             <!--单功能的展示-->
                                             <div class="height-42 hex iconfont col" :id="fun.index"
-                                                 :class="fun.icon">
+                                                 v-html="fun.icon">
                                             </div>
                                             <p class="font-s12 font-c6 margin-top-5 text-overflow-ellipsis">{{ fun.resName |
                                             intercept}}</p>
